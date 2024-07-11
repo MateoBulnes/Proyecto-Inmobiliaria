@@ -1,0 +1,8 @@
+#main_background {
+    width: 100%;
+}
+
+#navbarNavDropdown {
+    justify-content: flex-end;
+    margin-right: 2%;
+}
