@@ -1,8 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Montserrat", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/*html {
+    font-size: 62.5%;
+  }*/
+
+body {
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+}
+
 #main_background {
     width: 100%;
 }
 
-#navbarNavDropdown {
-    justify-content: flex-end;
-    margin-right: 2%;
+/*NAVBAR*/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 0.4s;
+    z-index: 10;
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("/media/casa_1.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+#navbar nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.fondo_navbar {
+    background-color: #90AAAC;
+}
+
+#navbar a {
+    font-weight: 500;
+}
+
+#navbar_paginas {
+    
+}
+
+#navbar_paginas a {
+    transition: 0.7s;
+}
+
+#navbar #img_logo_navbar {
+    width: 70%;
+}
+
+#navbar #img_logo_navbar img {
+    width: 15%;
 }
