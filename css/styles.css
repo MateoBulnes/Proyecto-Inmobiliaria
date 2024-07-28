@@ -37,7 +37,7 @@ main {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("/media/casa_1.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/media/fondo_principal_2.jpg");
     background-size: cover;
     background-position: center center;
 }
@@ -53,8 +53,12 @@ main {
     background-color: #282829;
 }
 
-.fondo_navbar #lista_navbar a{
+.fondo_navbar #lista_navbar a {
     color: #FFFFFF;
+}
+
+.fondo_navbar #lista_navbar a:hover {
+    color: #90AAAC;
 }
 
 #navbar a {
@@ -80,6 +84,10 @@ main {
     width: 15%;
 }
 
+/*#navbar .nav-link:hover{
+    color: #90AAAC;
+}*/
+
 #form_busqueda {
     z-index: 8;
     width: 50%;
@@ -102,15 +110,127 @@ main {
 }
 
 /*FOOTER*/
-footer{
-    height: 22vh;
+footer {
+    height: 30vh;
     width: 100%;
     background-color: #282829;
     margin-top: 5%;
+    box-shadow: -1px -1px 6px 1px rgba(0, 0, 0, 0.65);
 }
 
-footer #logo_footer{
-    width: 115%;
+footer #container_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #FFFFFF;
+    padding-top: 2%;
+}
+
+footer #container_footer #container_logo_footer {
+    width: 25%;
+    display: flex;
+    justify-content: start;
+}
+
+footer #container_footer #container_contacto_footer,
+footer #container_footer #container_links_footer {
+    width: 18%;
+}
+
+footer #container_footer #container_redes_footer {
+    width: 10%;
+}
+
+/*footer contactos*/
+footer #container_footer #container_contacto_footer ul li img {
+    width: 10%;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    border: solid 2px #FFFFFF;
+}
+
+footer #container_footer #container_contacto_footer h5,
+footer #container_footer #container_redes_footer h5,
+footer #container_footer #container_links_footer h5,
+footer #container_footer #container_links_footer ul{
+    width: 90%;
+    text-align: center;
+}
+
+footer #container_footer #container_contacto_footer #icono_mail_footer {
+    background-color: #282829;
+}
+
+footer #gmail_footer {
+    font-size: 13px;
+}
+
+footer .btn_footer {
+    background-color: #282829;
+    border: solid 1px #FFFFFF;
+    color: #FFFFFF;
+    width: 90%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+footer .btn_footer:hover {
+    background-color: #90AAAC;
+    transition: 0.3s;
+}
+
+footer #container_contacto_footer .container_btn_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+footer #container_contacto_footer .container_btn_footer span {
+    margin-left: 5%;
+}
+
+footer #container_footer #container_contacto_footer ul li:last-child {
+    margin-top: 5%;
+}
+
+footer #container_footer #container_contacto_footer ul,
+footer #container_footer #container_links_footer ul,
+footer #container_footer #container_redes_footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*footer links*/
+footer #container_footer #container_links_footer ul a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer #container_footer #container_links_footer ul a:hover {
+    color: #90AAAC;
+    transition: 0.3s;
+}
+
+footer hr {
+    width: 90%;
+}
+
+footer #logo_footer {
+    width: 70%;
+}
+
+/*footer redes*/
+footer .icono_redes {
+    width: 20%;
+}
+
+footer .icono_redes:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
 }
 
 #icono_wpp {
@@ -121,4 +241,30 @@ footer #logo_footer{
 
 #icono_wpp img {
     width: 10%;
+}
+
+/*NOSOTROS*/
+#seccion_nosotros {
+    display: flex;
+    justify-content: center;
+    background-color: #FFFFFF;
+    height: 100vh;
+    color: #282829;
+}
+
+#container_nosotros {
+    margin-top: 10%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#seccion_nosotros #container_nosotros .video_container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#seccion_nosotros #container_nosotros p {
+    text-align: justify;
 }
