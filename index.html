@@ -44,13 +44,19 @@
 
     <!--END NAVBAR-->
 
-
     <!--MAIN-->
     <main>
+        <h1>Encontra la casa de tus sueños</h1>
         <div class="input-group mb-3" id="form_busqueda">
+            <select class="form-select" id="select_tipo_prop">
+                <option selected>Tipo de Propiedad</option>
+                <option value="depto">Departamento</option>
+                <option value="casa">Casa</option>
+                <option value="oficina">Oficina</option>
+            </select>
             <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username"
                 aria-describedby="button-addon2">
-            <button class="btn btn-primary" type="button" id="button-addon2">
+            <button class="btn" type="button" id="btn_busqueda_ppal">
                 <i class="fas fa-search" aria-hidden="true"></i>
             </button>
         </div>
@@ -63,36 +69,60 @@
         <div id="cartas_ultimos_ingresos">
             <!--Agrego las tarjetas con JS-->
             <div class="row">
-                <div class="col-md-3 offset-md-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/media/casa_carta_1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="col-md-4">
+                    <div class="tarjeta_container">
+                        <div class="tarjeta_imagen">
+                            <div class="tarjeta_imagen_info">
+                                <h5 class="tarjeta_precio">USD 100.000</h5>
+                                <h5 class="tarjeta_tipo_transaccion">Venta</h5>
+                            </div>
+                        </div>
+                        <div class="tarjeta_info">
+                            <h4>Casa 1</h4>
+                            <h5>Ubicacion 1</h5>
+                            <div class="tarjeta_info_amenities">
+                                <span class="tarjeta_amenitie">3 ambientes |</span>
+                                <span class="tarjeta_amenitie">3 baños |</span>
+                                <span class="tarjeta_amenitie">35m</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/media/casa_carta_2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="col-md-4">
+                    <div class="tarjeta_container">
+                        <div class="tarjeta_imagen">
+                            <div class="tarjeta_imagen_info">
+                                <h5 class="tarjeta_precio">USD 100.000</h5>
+                                <h5 class="tarjeta_tipo_transaccion">Venta</h5>
+                            </div>
+                        </div>
+                        <div class="tarjeta_info">
+                            <h4>Casa 2</h4>
+                            <h5>Ubicacion 2</h5>
+                            <div class="tarjeta_info_amenities">
+                                <span class="tarjeta_amenitie">3 ambientes |</span>
+                                <span class="tarjeta_amenitie">3 baños |</span>
+                                <span class="tarjeta_amenitie">35m</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="/media/casa_carta_2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="col-md-4">
+                    <div class="tarjeta_container">
+                        <div class="tarjeta_imagen">
+                            <div class="tarjeta_imagen_info">
+                                <h5 class="tarjeta_precio">USD 100.000</h5>
+                                <h5 class="tarjeta_tipo_transaccion">Venta</h5>
+                            </div>
+                        </div>
+                        <div class="tarjeta_info">
+                            <h4>Casa 3</h4>
+                            <h5>Ubicacion 3</h5>
+                            <div class="tarjeta_info_amenities">
+                                <span class="tarjeta_amenitie">3 ambientes |</span>
+                                <span class="tarjeta_amenitie">3 baños |</span>
+                                <span class="tarjeta_amenitie">35m</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,7 +182,7 @@
     </footer>
     <!--END FOOTER-->
 
-    <a href="https://api.whatsapp.com/send?phone=541168480179" id="icono_wpp">
+    <a href="https://api.whatsapp.com/send?phone=541132069123" id="icono_wpp">
         <img src="/media/icono_wpp.png" alt="">
     </a>
 

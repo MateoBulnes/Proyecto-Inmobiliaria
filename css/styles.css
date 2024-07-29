@@ -51,10 +51,17 @@ main {
 
 .fondo_navbar {
     background-color: #282829;
+    box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.75);
 }
 
 .fondo_navbar #lista_navbar a {
     color: #FFFFFF;
+    transform: translateY(25px);
+    transition: 0.6s;
+}
+
+#lista_navbar a{
+    transition: 0.6s;
 }
 
 .fondo_navbar #lista_navbar a:hover {
@@ -84,15 +91,32 @@ main {
     width: 15%;
 }
 
-/*#navbar .nav-link:hover{
-    color: #90AAAC;
-}*/
+
+/*busqueda principal*/
+main h1{
+    width: 50%;
+    top: 40%;
+    left: 25%;
+    position: relative;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 35px;
+}
 
 #form_busqueda {
     z-index: 8;
     width: 50%;
-    top: 50%;
+    top: 45%;
     left: 25%;
+}
+
+#form_busqueda #select_tipo_prop{
+    background-color: #eae9e9;
+    flex: 0 1 27%;
+}
+
+#form_busqueda #btn_busqueda_ppal{
+    background-color: #90AAAC;
 }
 
 /*ULTIMOS INGRESOS*/
@@ -107,6 +131,63 @@ main {
 
 #ultimos_ingresos #cartas_ultimos_ingresos {
     margin-top: 2%;
+}
+
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-4:first-child{
+    padding-left: 2%;
+}
+
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-4:last-child{
+    padding-right: 2%;
+}
+
+    /*tarjetas*/
+#ultimos_ingresos .tarjeta_container{
+    height: 50vh;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.20);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#ultimos_ingresos .tarjeta_container:hover{
+    transform: translateY(-10px);
+}
+
+#ultimos_ingresos .tarjeta_imagen{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 70%;
+    background: url("/media/casa_carta_1.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+
+#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 30%;
+}
+
+#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info .tarjeta_precio{
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 0 0 1% 2%;
+}
+
+#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info .tarjeta_tipo_transaccion{
+    color: #FFFFFF;
+    padding: 0 2% 1% 0;
+}
+
+#ultimos_ingresos .tarjeta_info{
+    padding: 1% 0 0 2%;
+}
+
+#ultimos_ingresos .tarjeta_info h4{
+    font-weight: bold;
+    color: #282829;
 }
 
 /*FOOTER*/
