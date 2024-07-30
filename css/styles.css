@@ -463,8 +463,6 @@ footer .icono_redes:hover {
     font-weight: bold;
 }
 
-
-
 #main_contacto #container_medios_contacto .medio_contacto a {
     display: flex;
     flex-direction: row;
@@ -480,4 +478,106 @@ footer .icono_redes:hover {
 
 #main_contacto #container_medios_contacto .medio_contacto .icono_contacto {
     width: 5%;
+}
+
+/*PROPIEDADES*/
+#main_propiedades{
+    margin-top: 8%;
+    color: #282829;
+}
+
+/*filtros*/
+
+#main_propiedades #container_sidebar_filtros{
+    background-color: #FAFAFA;
+    padding: 2%;
+    margin-left: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
+}
+
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_criterio_orden{
+    width: 65%;
+}
+
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_orden{
+    width: 30%;
+}
+
+#main_propiedades #container_sidebar_filtros .container_tipo_filtro{
+    margin: 5%;
+}
+
+#main_propiedades #container_sidebar_filtros h5{
+    font-weight: 600;
+}
+
+#main_propiedades #container_sidebar_filtros .form-check .form-check-input:hover, 
+#main_propiedades #container_sidebar_filtros .form-check .form-check-label:hover{
+    cursor: pointer;
+}
+
+#main_propiedades #container_sidebar_filtros .form-check .form-check-input:checked{
+    background-color: #90AAAC;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio .btn_radio{
+    background-color: #282829;
+    color: #FFFFFF;
+    width: 30%;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio #label_filtro_pesos{
+    margin-left: 2%;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio .btn-check:checked + .btn_radio{
+    background-color: #90AAAC;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio{
+    margin-top: 3%;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio{
+    width: 100%;
+}
+
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio label{
+    margin-bottom: 1%;
+    margin-top: 3%;
+}
+
+#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros{
+    list-style-type: none;
+    padding: 0;
+}
+
+#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros li:hover{
+    cursor: pointer;
+    color: #90AAAC;
+    transition: 0.3s;
+}
+
+#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros{
+    background-color: #282829;
+    width: 100%;
+    font-weight: 500;
+}
+
+#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros:hover{
+    background-color: #90AAAC;
+}
+
+/*tarjetas propiedades*/
+
+#main_propiedades #container_propiedades{
+    background-color: #FAFAFA;
+    margin-left: 2%;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
 }

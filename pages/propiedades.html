@@ -20,7 +20,8 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="../index.html" id="img_logo_navbar">
                     <img src="../media/Logo_PGP-03.png" alt="logo perez guerrero" class="logo_base">
-                    <img src="../media/Logo_PGP-05.png" alt="logo perez guerrero" class="logo_scroll" style="display: none;">
+                    <img src="../media/Logo-PGP-07.png" alt="logo perez guerrero" class="logo_scroll"
+                        style="display: none;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_paginas"
                     aria-controls="navbar_paginas" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,8 +48,131 @@
 
 
     <!--MAIN-->
-    <section>
+    <section id="main_propiedades">
+        <div class="row">
+            <!--Sidebar filtros-->
+            <div class="col-md-3" id="container_sidebar_filtros">
 
+                <div id="container_header_filtros">
+                    <h4>Filtros</h4>
+                    <div id="container_orden">
+                        <select class="form-select" id="select_criterio_orden">
+                            <option value="texto">Ordenado por</option>
+                            <option value="precio">Precio</option>
+                            <option value="mas_reciente" selected>Más Reciente</option>
+                        </select>
+
+                        <select class="form-select" id="select_orden">
+                            <option value="texto">Orden</option>
+                            <option value="asc" selected>ASC</option>
+                            <option value="desc">DESC</option>
+                        </select>
+                    </div>
+                    <hr>
+                </div>
+
+                <div id="filtros_barrio" class="container_tipo_filtro">
+                    <h5>Barrio</h5>
+                    <div class="container_filtros">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check_tigre">
+                            <label class="form-check-label" for="check_tigre">Tigre</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check_san_isidro">
+                            <label class="form-check-label" for="check_san_isidro">San Isidro</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check_pilar">
+                            <label class="form-check-label" for="check_pilar">Pilar</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check_escobar">
+                            <label class="form-check-label" for="check_escobar">Escobar</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="check_del_viso">
+                            <label class="form-check-label" for="check_del_viso">Del Viso</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="filtros_tipo_oper" class="container_tipo_filtro">
+                    <h5>Tipo de Operacion</h5>
+                    <div class="container_filtros">
+                        <ul class="lista_filtros">
+                            <li>Todas</li>
+                            <li>Venta</li>
+                            <li>Alquiler</li>
+                            <li>Alquiler Temporario</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="filtros_tipo_propiedad" class="container_tipo_filtro">
+                    <h5>Tipo de Propiedad</h5>
+                    <div class="container_filtros">
+                        <ul class="lista_filtros">
+                            <li>Todos</li>
+                            <li>Departamento</li>
+                            <li>Casa</li>
+                            <li>Terreno</li>
+                            <li>Oficina</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="filtros_ambientes" class="container_tipo_filtro">
+                    <h5>Dormitorios</h5>
+                    <div class="container_filtros">
+                        <ul class="lista_filtros">
+                            <li>1 Dormitorio</li>
+                            <li>2 Dormitorios</li>
+                            <li>3 Dormitorios</li>
+                            <li>4 Dormitorios o más</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="filtros_precio" class="container_tipo_filtro">
+                    <h5>Precio</h5>
+                    <div class="container_filtros">
+                        <div id="container_radio_btns">
+                            <input type="radio" class="btn-check" name="precio" id="filtro_usd" autocomplete="off">
+                            <label class="btn btn_radio" for="filtro_usd">Usd</label>
+
+                            <input type="radio" class="btn-check" name="precio" id="filtro_pesos" autocomplete="off">
+                            <label class="btn btn_radio" for="filtro_pesos" id="label_filtro_pesos">Pesos</label>
+                        </div>
+
+                        <div id="container_input_precio">
+                            <div class="input_group_precio">
+                                <label for="precio_desde" class="form-label">Desde</label>
+                                <input type="text" id="precio_desde" class="form-control numerico" placeholder="Mínimo">
+                            </div>
+                            <div class="input_group_precio">
+                                <label for="precio_hasta" class="form-label">Hasta</label>
+                                <input type="text" id="precio_hasta" class="form-control numerico" placeholder="Máximo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <button class="btn btn-lg btn-primary" id="btn_aplicar_filtros">APLICAR</button>
+            </div>
+
+            <!--Propiedades-->
+            <div class="col-md-8" id="container_propiedades">
+                <div class="row">
+                    <!--aca inserto las propiedades con JS-->
+                </div>
+            </div>
+        </div>
     </section>
     <!--END MAIN-->
 
