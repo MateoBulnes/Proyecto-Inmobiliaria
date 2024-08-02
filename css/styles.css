@@ -57,15 +57,16 @@ main {
 }
 
 
-.fondo_navbar .logo_scroll, .fondo_navbar .logo_base{
+.fondo_navbar .logo_scroll,
+.fondo_navbar .logo_base {
     transform: translateY(10px);
 }
 
-#lista_navbar .nav_link_main{
+#lista_navbar .nav_link_main {
     color: #FFFFFF;
 }
 
-#lista_navbar .nav_link_main:hover{
+#lista_navbar .nav_link_main:hover {
     color: #282829;
 }
 
@@ -146,26 +147,34 @@ main h1 {
     margin-top: 2%;
 }
 
-#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-4:first-child {
+#ultimos_ingresos #cartas_ultimos_ingresos .row{
+    width: 100%;
+}
+
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-lg-4:first-child,
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-6:first-child,
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-sm-12:first-child {
     padding-left: 2%;
 }
 
-#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-4:last-child {
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-lg-4:last-child,
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-md-6:last-child,
+#ultimos_ingresos #cartas_ultimos_ingresos .row .col-sm-12:last-child {
     padding-right: 2%;
 }
 
 /*tarjetas*/
-#ultimos_ingresos .tarjeta_container {
+.tarjeta_container {
     height: 50vh;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#ultimos_ingresos .tarjeta_container:hover {
+.tarjeta_container:hover {
     transform: translateY(-10px);
 }
 
-#ultimos_ingresos .tarjeta_imagen {
+.tarjeta_imagen {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -175,7 +184,7 @@ main h1 {
     background-position: center center;
 }
 
-#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info {
+.tarjeta_imagen .tarjeta_imagen_info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -183,25 +192,26 @@ main h1 {
     height: 30%;
 }
 
-#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info .tarjeta_precio {
+.tarjeta_imagen .tarjeta_imagen_info .tarjeta_precio {
     color: #FFFFFF;
     font-weight: bold;
     padding: 0 0 1% 2%;
 }
 
-#ultimos_ingresos .tarjeta_imagen .tarjeta_imagen_info .tarjeta_tipo_transaccion {
+.tarjeta_imagen .tarjeta_imagen_info .tarjeta_tipo_transaccion {
     color: #FFFFFF;
     padding: 0 2% 1% 0;
 }
 
-#ultimos_ingresos .tarjeta_info {
+.tarjeta_info {
     padding: 1% 0 0 2%;
 }
 
-#ultimos_ingresos .tarjeta_info h4 {
+.tarjeta_info h4 {
     font-weight: bold;
     color: #282829;
 }
+
 
 /*FOOTER*/
 footer {
@@ -215,6 +225,7 @@ footer {
 footer #container_footer {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     color: #FFFFFF;
     padding-top: 2%;
@@ -226,9 +237,13 @@ footer #container_footer #container_logo_footer {
     justify-content: start;
 }
 
-footer #container_footer #container_contacto_footer,
+footer #container_footer #container_contacto_footer {
+    width: 25%;
+    margin-left: 1%;
+}
+
 footer #container_footer #container_links_footer {
-    width: 18%;
+    width: 15%;
 }
 
 footer #container_footer #container_redes_footer {
@@ -238,9 +253,7 @@ footer #container_footer #container_redes_footer {
 /*footer contactos*/
 footer #container_footer #container_contacto_footer ul li img {
     width: 10%;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    border: solid 2px #FFFFFF;
+
 }
 
 footer #container_footer #container_contacto_footer h5,
@@ -251,17 +264,14 @@ footer #container_footer #container_links_footer ul {
     text-align: center;
 }
 
-footer #container_footer #container_contacto_footer #icono_mail_footer {
-    background-color: #282829;
-}
 
 footer #gmail_footer {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 footer .btn_footer {
     background-color: #282829;
-    border: solid 1px #FFFFFF;
+    /*border: solid 1px #FFFFFF;*/
     color: #FFFFFF;
     width: 90%;
     padding-right: 0;
@@ -279,15 +289,11 @@ footer #container_contacto_footer .container_btn_footer {
     justify-content: start;
     align-items: center;
     font-weight: 500;
-    margin-left: 5%;
+    /*margin-left: 5%;*/
 }
 
 footer #container_contacto_footer .container_btn_footer span {
     margin-left: 5%;
-}
-
-footer #container_footer #container_contacto_footer ul li:last-child {
-    margin-top: 5%;
 }
 
 footer #container_footer #container_contacto_footer ul,
@@ -326,6 +332,8 @@ footer .icono_redes:hover {
     transform: scale(1.1);
     transition: 0.3s;
 }
+
+
 
 #icono_wpp {
     position: fixed;
@@ -481,103 +489,376 @@ footer .icono_redes:hover {
 }
 
 /*PROPIEDADES*/
-#main_propiedades{
+#main_propiedades {
     margin-top: 8%;
     color: #282829;
 }
 
 /*filtros*/
 
-#main_propiedades #container_sidebar_filtros{
+#main_propiedades #container_sidebar_filtros {
     background-color: #FAFAFA;
     padding: 2%;
     margin-left: 2%;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
 }
 
-#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden{
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_criterio_orden{
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_criterio_orden {
     width: 65%;
 }
 
-#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_orden{
+#main_propiedades #container_sidebar_filtros #container_header_filtros #container_orden #select_orden {
     width: 30%;
 }
 
-#main_propiedades #container_sidebar_filtros .container_tipo_filtro{
+#main_propiedades #container_sidebar_filtros .container_tipo_filtro {
     margin: 5%;
 }
 
-#main_propiedades #container_sidebar_filtros h5{
+#main_propiedades #container_sidebar_filtros h5 {
     font-weight: 600;
 }
 
-#main_propiedades #container_sidebar_filtros .form-check .form-check-input:hover, 
-#main_propiedades #container_sidebar_filtros .form-check .form-check-label:hover{
+#main_propiedades #container_sidebar_filtros .form-check .form-check-input:hover,
+#main_propiedades #container_sidebar_filtros .form-check .form-check-label:hover {
     cursor: pointer;
 }
 
-#main_propiedades #container_sidebar_filtros .form-check .form-check-input:checked{
+#main_propiedades #container_sidebar_filtros .form-check .form-check-input:checked {
     background-color: #90AAAC;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio .btn_radio{
+#main_propiedades #container_sidebar_filtros #filtros_precio .btn_radio {
     background-color: #282829;
     color: #FFFFFF;
     width: 30%;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio #label_filtro_pesos{
+#main_propiedades #container_sidebar_filtros #filtros_precio #label_filtro_pesos {
     margin-left: 2%;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio .btn-check:checked + .btn_radio{
+#main_propiedades #container_sidebar_filtros #filtros_precio .btn-check:checked+.btn_radio {
     background-color: #90AAAC;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio{
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio {
     margin-top: 3%;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio{
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio {
     width: 100%;
 }
 
-#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio label{
+#main_propiedades #container_sidebar_filtros #filtros_precio #container_input_precio .input_group_precio label {
     margin-bottom: 1%;
     margin-top: 3%;
 }
 
-#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros{
+#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros {
     list-style-type: none;
     padding: 0;
 }
 
-#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros li:hover{
+#main_propiedades #container_sidebar_filtros .container_filtros .lista_filtros li:hover {
     cursor: pointer;
     color: #90AAAC;
     transition: 0.3s;
 }
 
-#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros{
+#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros {
     background-color: #282829;
     width: 100%;
     font-weight: 500;
 }
 
-#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros:hover{
+#main_propiedades #container_sidebar_filtros #btn_aplicar_filtros:hover {
     background-color: #90AAAC;
 }
 
 /*tarjetas propiedades*/
 
-#main_propiedades #container_propiedades{
+#main_propiedades #container_propiedades {
     background-color: #FAFAFA;
     margin-left: 2%;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
+}
+
+#main_propiedades #container_propiedades .row {
+    margin-top: 1%;
+}
+
+/*DETALLE PROPIEDAD*/
+#navegacion_detalle {
+    width: 15%;
+    margin: 8% 0 0 2%
+}
+
+#navegacion_detalle a {
+    text-decoration: none;
+    color: #282829;
+}
+
+#navegacion_detalle img {
+    width: 10%;
+}
+
+#navegacion_detalle span:hover {
+    color: #90AAAC;
+}
+
+#main_detalle h1 {
+    margin: 2% 0 2% 2%;
+}
+
+#main_detalle .container_detalle {
+    background-color: #282829;
+    margin: 0 0 0 0;
+}
+
+#main_detalle .container_detalle #container_imgs_detalle {
+    padding: 0 0 0 0;
+}
+
+#main_detalle .container_detalle #container_info_detalle {
+    color: #FFFFFF;
+    padding: 2%;
+}
+
+.container_info_prop {
+    margin: 2%;
+}
+
+iframe {
+    width: 100%;
+    height: 50vh;
+}
+
+.carousel-inner {
+    height: 70vh;
+    /* Ajusta la altura según sea necesario */
+    transition: 0.5s;
+}
+
+.carousel-inner img {
+    height: 100%;
+    object-fit: cover;
+    /* O usa 'contain' si prefieres que las imágenes se ajusten sin recorte */
+}
+
+
+/*MEDIA QUERIES*/
+@media (max-width: 1500px){
+    .tarjeta_container{
+        height: 60vh;
+    }
+}
+
+@media (max-width: 1345px) {
+    #header_nosotros #container_header_nosotros, #header_nosotros #container_header_nosotros p{
+        text-align: center;
+    }
+
+    footer #gmail_footer {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 1145px) {
+    #header_nosotros{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #header_nosotros #container_header_nosotros{
+        width: 80%;
+        margin-bottom: 2%;
+    }
+
+    #main_contacto #container_medios_contacto{
+        text-align: center;
+        padding: 2%;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto a{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto .icono_contacto{
+        margin-bottom: 2%;
+        width: 8%;
+    }
+
+    footer {
+        height: auto;
+    }
+
+    footer #container_contacto_footer .container_btn_footer {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    footer #container_contacto_footer .container_btn_footer span {
+        margin-top: 2%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 1000px){
+    #ultimos_ingresos #cartas_ultimos_ingresos .row .col-sm-12:last-child{
+        padding-left: 2%;
+        padding-right: 1%;
+        margin-top: 2%;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto h5{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #ultimos_ingresos #cartas_ultimos_ingresos .row .col-sm-12{
+        padding: 2%;
+        margin: 2%;
+    }
+
+    #seccion_valores{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #seccion_valores .card_valores{
+        width: 90%;
+    }
+
+    .video_container video{
+        width: 500px;
+    }
+
+    #main_contacto{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    #main_contacto #container_medios_contacto{
+        width: 100%;
+    }
+
+    #main_contacto #container_img_contacto{
+        width: 100%;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto h5{
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto .icono_contacto{
+        width: 6%;
+    }
+
+    footer {
+        height: auto;
+    }
+
+    footer #container_footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer #container_footer #container_logo_footer {
+        margin-bottom: 2%;
+    }
+
+    footer #logo_footer {
+        width: 100%;
+    }
+
+
+    footer #container_footer #container_redes_footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5%;
+    }
+
+    footer #container_footer #container_redes_footer h5 {
+        width: 100%;
+    }
+
+    footer #container_footer #container_redes_footer hr,
+    footer #container_footer #container_contacto_footer hr,
+    footer #container_footer #container_links_footer hr {
+        width: 40%;
+        margin-top: 0;
+    }
+
+    footer .icono_redes {
+        width: 5%;
+    }
+
+    footer #container_footer #container_contacto_footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5%;
+    }
+
+    footer .btn_footer {
+        width: 50%;
+    }
+
+    footer #container_contacto_footer .container_btn_footer {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    footer #container_contacto_footer .container_btn_footer span {
+        margin-top: 2%;
+        margin-left: 0;
+    }
+
+    footer #container_footer #container_links_footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5%;
+    }
+
+}
+
+@media (max-width: 530px){
+    .video_container video{
+        width: 400px;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto h5{
+        font-size: 15px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 420px){
+    .video_container video{
+        width: 300px;
+    }
+}
+
+@media (max-width: 330px){
+    #main_contacto #container_medios_contacto .medio_contacto h5{
+        font-size: 10px;
+        margin-left: 0;
+    }
 }
