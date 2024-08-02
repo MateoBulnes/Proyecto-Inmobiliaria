@@ -6,6 +6,29 @@
     margin: 0;
 }
 
+/*html::-webkit-scrollbar{
+    width: 0.7vw;
+}
+
+
+html::-webkit-scrollbar-thumb{
+    background-color: #90AAAC;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover{
+    background-color: #9eb9bb;
+}
+
+html::-webkit-scrollbar-track{
+    background-color: #282829;
+}
+
+html::-webkit-scrollbar-track:hover{
+    background-color: #3d3d3e;
+}*/
+
 body {
     background-attachment: fixed;
     overflow-x: hidden;
@@ -289,7 +312,7 @@ footer #container_contacto_footer .container_btn_footer {
     justify-content: start;
     align-items: center;
     font-weight: 500;
-    /*margin-left: 5%;*/
+    margin-left: 5%;
 }
 
 footer #container_contacto_footer .container_btn_footer span {
@@ -642,14 +665,12 @@ iframe {
 
 .carousel-inner {
     height: 70vh;
-    /* Ajusta la altura según sea necesario */
     transition: 0.5s;
 }
 
 .carousel-inner img {
     height: 100%;
     object-fit: cover;
-    /* O usa 'contain' si prefieres que las imágenes se ajusten sin recorte */
 }
 
 
@@ -667,6 +688,10 @@ iframe {
 
     footer #gmail_footer {
         font-size: 10px;
+    }
+
+    #icono_wpp {
+        right: -35%;
     }
 }
 
@@ -709,6 +734,10 @@ iframe {
         margin-top: 2%;
         margin-left: 0;
     }
+
+    #icono_wpp {
+        right: -38%;
+    }
 }
 
 @media (max-width: 1000px){
@@ -720,6 +749,16 @@ iframe {
 
     #main_contacto #container_medios_contacto .medio_contacto h5{
         font-size: 15px;
+    }
+
+    #icono_wpp {
+        right: -45%;
+    }
+}
+
+@media (max-width: 870px){
+    #icono_wpp {
+        right: -52%;
     }
 }
 
@@ -856,6 +895,15 @@ iframe {
         margin-bottom: 5%;
     }
 
+    #icono_wpp {
+        right: -58%;
+    }
+}
+
+@media (max-width: 650px){
+    #icono_wpp {
+        right: -70%;
+    }
 }
 
 @media (max-width: 555px){
@@ -874,11 +922,31 @@ iframe {
         font-size: 15px;
         margin-left: 0;
     }
+
+    #icono_wpp {
+        right: -83%;
+    }
+}
+
+@media (max-width: 450px){
+    #icono_wpp {
+        right: -96%;
+    }
 }
 
 @media (max-width: 420px){
     .video_container video{
         width: 300px;
+    }
+
+    #icono_wpp {
+        right: -100%;
+    }
+}
+
+@media (max-width: 380px){
+    #icono_wpp {
+        right: -115%;
     }
 }
 
@@ -886,5 +954,9 @@ iframe {
     #main_contacto #container_medios_contacto .medio_contacto h5{
         font-size: 10px;
         margin-left: 0;
+    }
+
+    #icono_wpp {
+        right: -130%;
     }
 }
