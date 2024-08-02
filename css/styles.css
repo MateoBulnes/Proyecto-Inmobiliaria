@@ -724,11 +724,13 @@ iframe {
 }
 
 @media (max-width: 768px) {
+    /*principal*/
     #ultimos_ingresos #cartas_ultimos_ingresos .row .col-sm-12{
         padding: 2%;
         margin: 2%;
     }
 
+    /*nosotros*/
     #seccion_valores{
         flex-direction: column;
         align-items: center;
@@ -743,6 +745,7 @@ iframe {
         width: 500px;
     }
 
+    /*contacto*/
     #main_contacto{
         flex-direction: column-reverse;
         align-items: center;
@@ -765,6 +768,22 @@ iframe {
         width: 6%;
     }
 
+    /*propiedades*/
+    #main_propiedades #container_propiedades .row .col-sm-10{
+        padding: 2%;
+        margin: 2% 2% 2% 6%;
+    }
+
+    /*detalle*/
+    .contenido_info p{
+        text-align: center;
+    }
+
+    .container_info_prop h4{
+        text-align: center;
+    }
+
+    /*footer*/
     footer {
         height: auto;
     }
@@ -837,6 +856,13 @@ iframe {
         margin-bottom: 5%;
     }
 
+}
+
+@media (max-width: 555px){
+    #main_propiedades #container_propiedades .row .col-sm-10{
+        padding: 2%;
+        margin: 0;
+    }
 }
 
 @media (max-width: 530px){
