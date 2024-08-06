@@ -75,7 +75,7 @@ main {
 
 .fondo_navbar #lista_navbar a {
     color: #FFFFFF;
-    transform: translateY(25px);
+    transform: translateY(20px);
     transition: 0.6s;
 }
 
@@ -116,7 +116,7 @@ main {
 }
 
 #navbar #img_logo_navbar {
-    width: 75%;
+    width: 60%;
 }
 
 #navbar #img_logo_navbar img {
@@ -202,9 +202,9 @@ main h1 {
     flex-direction: column;
     justify-content: flex-end;
     height: 70%;
-    background: url("/media/casa_carta_1.jpg");
-    background-size: cover;
-    background-position: center center;
+    /*background: url("/media/casa_carta_1.jpg");*/
+    /*background-size: cover;
+    background-position: center center;*/
 }
 
 .tarjeta_imagen .tarjeta_imagen_info {
@@ -233,6 +233,10 @@ main h1 {
 .tarjeta_info h4 {
     font-weight: bold;
     color: #282829;
+}
+
+.badge_tarjeta{
+    background-color: #90AAAC;
 }
 
 
