@@ -270,7 +270,13 @@ footer #container_footer #container_links_footer {
 }
 
 footer #container_footer #container_redes_footer {
-    width: 10%;
+    width: 12%;
+}
+
+footer #container_footer #container_redes_footer ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 /*footer contactos*/
@@ -348,7 +354,7 @@ footer #logo_footer {
 
 /*footer redes*/
 footer .icono_redes {
-    width: 20%;
+    width: 65%;
 }
 
 footer .icono_redes:hover {
