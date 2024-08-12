@@ -13,5 +13,6 @@ const options = {
     constructor(id, titu)
 }*/
 
+var pagina_actual = window.location.pathname.split('/').pop();
 var ultimos_ingresos;
 var propiedades;

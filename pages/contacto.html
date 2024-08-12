@@ -28,13 +28,20 @@
                 <div class="collapse navbar-collapse" id="navbar_paginas">
                     <ul class="navbar-nav" id="lista_navbar">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="propiedades.html">Propiedades</a>
+                            <a class="nav-link nav_link_main" aria-current="page"
+                                href="../pages/propiedades.html">Propiedades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                            <a class="nav-link nav_link_main" href="../pages/emprendimientos.html">Emprendimientos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contacto.html">Contacto</a>
+                            <a class="nav-link nav_link_main" href="../pages/tasaciones.html">Tasaciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav_link_main" href="../pages/nosotros.html">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav_link_main" href="../pages/contacto.html">Contacto</a>
                         </li>
                     </ul>
                 </div>
@@ -47,25 +54,65 @@
 
     <!--MAIN-->
     <section id="main_contacto">
-        <div id="container_medios_contacto">
-            <h1>Contacto</h1>
-            <div class="medio_contacto">
-                <a href="https://api.whatsapp.com/send?phone=541132069123">
-                    <img src="/media/icono_wpp_contacto.png" alt="icono whatsapp" class="icono_contacto">
-                    <h5>+54 11 3206-9123</h5>
-                </a>
-            </div>
-            <div class="medio_contacto">
-                <a href="#">
-                    <img src="/media/icono_mail_contacto.png" alt="icono email" class="icono_contacto">
-                    <h5>info@perezguerreropropiedades.com.ar</h5>
-                </a>
-            </div>
-            <div class="medio_contacto">
-                <a href="#">
-                    <img src="/media/icono_instagram_contacto.png" alt="icono instagram" class="icono_contacto">
-                    <h5>@perezguerrero</h5>
-                </a>
+        <div id="container_contacto">
+            <h2>Envianos un mensaje</h2>
+
+            <form action="#" id="form_contacto">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label for="nombre_contacto" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre_contacto">
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="telefono_contacto" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="telefono_contacto">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label for="mail_contacto" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="mail_contacto">
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="asunto_contacto" class="form-label">Asunto</label>
+                        <input type="email" class="form-control" id="asunto_contacto">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <label for="mensaje_contacto" class="form-label">Mensaje</label>
+                        <textarea name="comentario" id="mensaje_contacto" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn" id="btn_enviar_contacto">Enviar</button>
+                    </div>
+                </div>
+            </form>
+            <div id="container_medios_contacto">
+                <h3>Medios de Contacto</h3>
+                <div class="medio_contacto">
+                    <a href="https://api.whatsapp.com/send?phone=541132069123">
+                        <img src="/media/icono_wpp_contacto.png" alt="icono whatsapp" class="icono_contacto">
+                        <h5>+54 11 3206-9123</h5>
+                    </a>
+                </div>
+                <div class="medio_contacto">
+                    <a href="#">
+                        <img src="/media/icono_mail_contacto.png" alt="icono email" class="icono_contacto">
+                        <h5>info@perezguerreropropiedades.com.ar</h5>
+                    </a>
+                </div>
+                <div class="medio_contacto">
+                    <a href="#">
+                        <img src="/media/icono_instagram_contacto.png" alt="icono instagram" class="icono_contacto">
+                        <h5>@perezguerrero</h5>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="container_img_contacto">
@@ -130,6 +177,11 @@
                     <li><a href="../pages/contacto.html">Contacto</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="row" id="disclaimer_footer">
+            <p>2024 - Reservados todos los derechos Perez Guerrero Propiedades - Florencia Perez Guerrero (C.M.Z.C 627)
+            </p>
+            <span>Desarrollado por Mateo Bulnes</span>
         </div>
     </footer>
     <!--END FOOTER-->

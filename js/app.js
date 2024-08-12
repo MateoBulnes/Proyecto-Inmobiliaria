@@ -1,30 +1,4 @@
-/*API*/
-//const API_KEY = '5940ea45eb7cfb55228bec0b958ea9c0be151757';
-/*const API_KEY = 'de8bf11f2f631662a2b561aa688c0efa1764a6ff';
-const categoria = 'location';
-var id_propiedad = 24880;
-//const url = `https://www.tokkobroker.com/api/v1/${categoria}/${id_propiedad}/?key=${API_KEY}&lang=es_ar&format=json`;
-const limite = 3;
-const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=${limite}&order_by=deleted_at`;
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'API_KEY'
-    }
-};
-
-fetch(url, options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));*/
-
-
-
-
-var pagina_actual = window.location.pathname.split('/').pop();
 
 window.addEventListener("scroll", () => {
     let navbar = document.querySelector('#navbar');
@@ -57,21 +31,25 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         case 'propiedades.html':
             await obtener_propiedades();
-            console.log(propiedades);
 
-            let cant_filas = propiedades.length / 3;
+            for (let i = 0; i < propiedades.length; i++) {
+                let fila = Math.floor(i / 3);
+                let div_row = document.getElementById(`fila_prop_${fila}`);
 
-            let contador_prop = 0;
-            for (let i = 0; i < cant_filas; i++) {
-                let row = document.createElement('div');
-                row.classList.add('row');
-                row.id = `fila_prop_${i+1}`;
-
-                console.log(row)
-
-                document.querySelector('#container_propiedades').append(row);
-                //TODO: faltaria agregar las tarjetas dentro de cada row
+                if (!div_row) {
+                    div_row = document.createElement('div');
+                    div_row.classList.add('row');
+                    div_row.id = `fila_prop_${fila}`;
+                    document.querySelector('#container_propiedades').append(div_row);
+                }
+                crear_tarjeta_propiedad(propiedades[i], fila);
             }
+
+            let btn_ver_mas = document.createElement('button');
+            btn_ver_mas.classList.add('btn');
+            btn_ver_mas.id = 'btn_ver_mas';
+            btn_ver_mas.innerText = 'Ver Más';
+            document.querySelector('#container_propiedades').append(btn_ver_mas);
 
             break;
 

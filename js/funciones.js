@@ -8,7 +8,7 @@ const obtener_ultimos_ingresos = async () => {
     ultimos_ingresos = data.objects;
 }
 
-const obtener_propiedades = async (offset = 0, limite = 9) =>{
+const obtener_propiedades = async (offset = 0, limite = 9) => {
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=${limite}&order_by=deleted_at&offset=${offset}`;
     const resp = await fetch(url, options);
 
@@ -16,7 +16,7 @@ const obtener_propiedades = async (offset = 0, limite = 9) =>{
     propiedades = data.objects;
 }
 
-const crear_tarjeta_propiedad = (propiedad) => {
+const crear_tarjeta_propiedad = (propiedad, fila) => {
     let precio = propiedad.operations[0].prices[0].price;
     let moneda = propiedad.operations[0].prices[0].currency;
     let tipo_oper = propiedad.operations[0].operation_type;
@@ -29,12 +29,13 @@ const crear_tarjeta_propiedad = (propiedad) => {
 
     let tarjeta = document.createElement('div');
 
-    tarjeta.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
+    (pagina_actual == 'index.html') ? tarjeta.classList.add('col-sm-12', 'col-md-6', 'col-lg-4') : tarjeta.classList.add('col-sm-10', 'col-md-6', 'col-lg-4');
+
     tarjeta.innerHTML = `
         <div class="tarjeta_container">
             <div class="tarjeta_imagen">
                 <div class="tarjeta_imagen_info">
-                    <h4 class="tarjeta_precio"><span class="badge badge_tarjeta">${moneda} ${precio}</span></h4>
+                    <h4 class="tarjeta_precio"><span class="badge badge_tarjeta">${moneda} ${precio.toLocaleString('es-ES')}</span></h4>
                     <h5 class="tarjeta_tipo_transaccion"><span class="badge badge_tarjeta">${tipo_oper}</span></h5>
                 </div>
             </div>
@@ -52,5 +53,9 @@ const crear_tarjeta_propiedad = (propiedad) => {
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundSize = 'cover';
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundPosition = 'center center';
 
-    document.querySelector('#cartas_ultimos_ingresos .row').append(tarjeta);
+    if(pagina_actual == 'index.html'){
+        document.querySelector('#cartas_ultimos_ingresos .row').append(tarjeta);
+    } else{
+        document.querySelector(`#container_propiedades #fila_prop_${fila}`).append(tarjeta);
+    }
 }
