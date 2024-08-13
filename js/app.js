@@ -19,7 +19,6 @@ window.addEventListener("scroll", () => {
 });
 
 document.addEventListener("DOMContentLoaded", async function () {
-
     switch (pagina_actual) {
         case 'index.html':
             await obtener_ultimos_ingresos();
@@ -27,6 +26,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             ultimos_ingresos.forEach(prop => {
                 crear_tarjeta_propiedad(prop);
             });
+
+            await obtener_emprendimientos();
+            crear_filtro('emprendimiento_busqueda');
+
+            await obtener_localidades();
+            crear_filtro('localidad_busqueda');
+
             break;
 
         case 'propiedades.html':
@@ -45,6 +51,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                 crear_tarjeta_propiedad(propiedades[i], fila);
             }
 
+            var tarjetas = document.querySelectorAll(".tarjeta_container");
+
+            tarjetas.forEach(function (tarjeta) {
+                tarjeta.addEventListener("click", function () {
+                    const id_prop = this.getAttribute('data-id');
+                    window.location.href = `detalle.html?id=${id_prop}`;
+                });
+            });
+
             let btn_ver_mas = document.createElement('button');
             btn_ver_mas.classList.add('btn');
             btn_ver_mas.id = 'btn_ver_mas';
@@ -58,7 +73,16 @@ document.addEventListener("DOMContentLoaded", async function () {
             video.play();
             break;
 
-        default:
+        default: //detalle
+            const params = new URLSearchParams(window.location.search);
+            let id_prop = params.get('id');
+
+            if(id_prop){
+                await obtener_detalle_prop(id_prop);
+                console.log(detalle_prop);
+                llenar_detalle_prop();
+            }
+
             break;
     }
 });

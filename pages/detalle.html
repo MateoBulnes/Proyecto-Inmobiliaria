@@ -8,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link rel="shortcut icon" href="../media/Logo_PGP-06.png">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -60,82 +64,44 @@
 
     <!--MAIN-->
     <section id="main_detalle">
-        <h1>Titulo Propiedad</h1>
         <div class="container_detalle row">
             <div class="col-md-7" id="container_imgs_detalle">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="../media/casa_carta_1.jpg" class="d-block w-100 img_detalle" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="10000">
-                            <img src="../media/casa_carta_2.jpg" class="d-block w-100 img_detalle" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="10000">
-                            <img src="../media/casa_carta_3.jpg" class="d-block w-100 img_detalle" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                <div id="container_img_slider" class="">
+                    <img src="../media/btn_anterior.png" alt="" class="btn_slider" onclick="anterior_img()">
+                    <img src="../media/btn_siguiente.png" alt="" class="btn_slider" onclick="siguiente_img()">
                 </div>
             </div>
             <div class="col-md-4" id="container_info_detalle">
-                <h3>Precio$$</h3>
-                <span>Venta</span>
+                <h1></h1>
+                <h3 id="precio_detalle"></h3>
+                <span id="tipo_oper_detalle"></span>
                 <div class="info_ppal_detalle">
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <h5>Tipo de Propiedad</h5>
-                            <p>Casa</p>
+                            <p id="tipo_prop_detalle"></p>
                         </div>
                         <div class="col-sm-6 col-md-6">
-                            <h5>Ubicación</h5>
-                            <p>Escobar</p>
+                            <h5>Localidad</h5>
+                            <p id="localidad_detalle"></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <h5>Dormitorios</h5>
-                            <p>4</p>
+                            <p id="dormitorios_detalle"></p>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <h5>Baños</h5>
-                            <p>3</p>
+                            <p id="banios_detalle"></p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Antiguedad</h5>
-                            <p>7</p>
-                        </div>
                         <div class="col-sm-6 col-md-6">
                             <h5>Superficie Cubierta</h5>
-                            <p>506 m</p>
+                            <p id="superficie_detalle"></p>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Plantas</h5>
-                            <p>2</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -145,37 +111,45 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="row container_info_prop">
-                        <h4>Información Básica</h4>
+                        <h4>Características</h4>
                         <hr>
                         <div class="col-sm-6 col-md-6 contenido_info">
                             <ul>
-                                <li>Ambientes: 2</li>
-                                <li>Baños: 2</li>
-                                <li>Cochera: 1</li>
-                                <li>Antiguedad: 7 Años</li>
+                                <li id="dormitorios_caract"></li>
+                                <li id="banios_caract"></li>
+                                <li id="sup_cubierta_caract"></li>
+                                <li id="sup_total_caract"></li>
                             </ul>
                         </div>
                         <div class="col-sm-6 col-md-6 contenido_info">
                             <ul>
-                                <li>Dormitorios: 4</li>
-                                <li>Plantas: 2</li>
-                                <li>Expensas: 0$</li>
+                                <li id="precio_caract"></li>
+                                <li id="ubicacion_caract"></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="row container_info_prop">
-                        <h4>Superficies y Medidas</h4>
+                        <h4>Servicios</h4>
                         <hr>
-                        <div class="col-sm-6 col-md-6 contenido_info">
-                            <ul>
-                                <li>Terreno: 20m</li>
-                                <li>Semicubierta: 10m</li>
+                        <div class="col-sm-3 col-md-3 contenido_info">
+                            <ul id="lista_servicios_1">
+                                
                             </ul>
                         </div>
-                        <div class="col-sm-6 col-md-6 contenido_info">
-                            <ul>
-                                <li>Cubierta: 10m</li>
+                        <div class="col-sm-3 col-md-3 contenido_info">
+                            <ul id="lista_servicios_2">
+                                
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 col-md-3 contenido_info">
+                            <ul id="lista_servicios_3">
+                                
+                            </ul>
+                        </div>
+                        <div class="col-sm-3 col-md-3 contenido_info">
+                            <ul id="lista_servicios_4">
+                                
                             </ul>
                         </div>
                     </div>
@@ -183,40 +157,8 @@
                     <div class="row container_info_prop">
                         <h4>Descripción</h4>
                         <hr>
-                        <div class="col-md-12 contenido_info">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. A, eaque. Amet fugit recusandae
-                                eos
-                                porro sit asperiores iure alias quidem ex, dignissimos voluptates. In perspiciatis vitae
-                                consequatur quas! Commodi, inventore.
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa, perspiciatis, velit
-                                cumque esse
-                                animi eaque voluptates itaque minus quam dicta tempore dolore est nostrum veritatis
-                                porro, alias
-                                accusantium consequatur? Similique?
-                            </p>
-                        </div>
-                    </div>
+                        <div class="col-md-12 contenido_info" id="descripcion_detalle">
 
-                    <div class="row container_info_prop">
-                        <h4>Servicios</h4>
-                        <hr>
-                        <div class="col-sm-6 col-md-6 contenido_info">
-                            <ul>
-                                <li>Agua Corriente</li>
-                                <li>Internet</li>
-                                <li>Telefono</li>
-                                <li>Cable</li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6 col-md-6 contenido_info">
-                            <ul>
-                                <li>Electricidad</li>
-                                <li>Seguridad</li>
-                                <li>Gimnasio</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -224,11 +166,8 @@
                     <div class="container_info_prop row">
                         <h4>Ubicación</h4>
                         <hr>
-                        <div class="col-md-12 contenido_info">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13165.120078794116!2d-58.703872000000004!3d-34.4196417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bca193df3f49db%3A0x76594561953aeb58!2sBarrio%20Cerrado%20Lomas%20de%20Benav%C3%ADdez!5e0!3m2!1ses!2sar!4v1722514456665!5m2!1ses!2sar"
-                                style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="col-md-12 contenido_info" id="map">
+
                         </div>
                     </div>
                 </div>
@@ -251,10 +190,14 @@
                 <h5>Redes</h5>
                 <hr>
                 <ul>
-                    <li><a href="#"><img src="../media/icono_instagram_footer.png" alt="icono instagram" class="icono_redes"></a></li>
-                    <li><a href="#"><img src="../media/icono_facebook_footer.png" alt="icono facebook" class="icono_redes"></a></li>
-                    <li><a href="#"><img src="../media/icono_linkedin_footer.png" alt="icono linkedin" class="icono_redes"></a></li>
-                    <li><a href="#"><img src="../media/icono_tiktok_footer.png" alt="icono tik tok" class="icono_redes"></a></li>
+                    <li><a href="#"><img src="../media/icono_instagram_footer.png" alt="icono instagram"
+                                class="icono_redes"></a></li>
+                    <li><a href="#"><img src="../media/icono_facebook_footer.png" alt="icono facebook"
+                                class="icono_redes"></a></li>
+                    <li><a href="#"><img src="../media/icono_linkedin_footer.png" alt="icono linkedin"
+                                class="icono_redes"></a></li>
+                    <li><a href="#"><img src="../media/icono_tiktok_footer.png" alt="icono tik tok"
+                                class="icono_redes"></a></li>
                 </ul>
             </div>
             <div id="container_contacto_footer">
@@ -291,7 +234,8 @@
             </div>
         </div>
         <div class="row" id="disclaimer_footer">
-            <p>2024 - Reservados todos los derechos Perez Guerrero Propiedades - Florencia Perez Guerrero (C.M.Z.C 627)</p>
+            <p>2024 - Reservados todos los derechos Perez Guerrero Propiedades - Florencia Perez Guerrero (C.M.Z.C 627)
+            </p>
             <span>Desarrollado por Mateo Bulnes</span>
         </div>
     </footer>
@@ -304,6 +248,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="../js/variables.js"></script>
+    <script src="../js/funciones.js"></script>
     <script src="../js/app.js"></script>
 </body>
 

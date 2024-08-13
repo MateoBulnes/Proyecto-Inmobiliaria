@@ -1,4 +1,4 @@
-
+/*LLAMADAS A LA API*/
 const obtener_ultimos_ingresos = async () => {
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=3&order_by=deleted_at`;
     const resp = await fetch(url, options);
@@ -16,7 +16,37 @@ const obtener_propiedades = async (offset = 0, limite = 9) => {
     propiedades = data.objects;
 }
 
+const obtener_localidades = async () => {
+    const url = `https://www.tokkobroker.com/api/v1/state/${id_zona_norte}/?key=${API_KEY}&lang=es_ar&format=json`;
+
+    const resp = await fetch(url, options);
+
+    const data = await resp.json();
+    localidades = data.divisions;
+}
+
+const obtener_emprendimientos = async () => {
+    const url = `https://www.tokkobroker.com/api/v1/development/?key=${API_KEY}&lang=es_ar&format=json`;
+
+    const resp = await fetch(url, options);
+    const data = await resp.json();
+
+    emprendimientos = data.objects;
+}
+
+const obtener_detalle_prop = async (id_prop) => {
+    const url = `https://www.tokkobroker.com/api/v1/property/${id_prop}/?key=${API_KEY}&lang=es_ar&format=json`;
+
+    const resp = await fetch(url, options);
+    const data = await resp.json();
+
+    detalle_prop = data;
+}
+
+/*CREACION DE ELEMENTOS*/
+
 const crear_tarjeta_propiedad = (propiedad, fila) => {
+    let id_prop = propiedad.id;
     let precio = propiedad.operations[0].prices[0].price;
     let moneda = propiedad.operations[0].prices[0].currency;
     let tipo_oper = propiedad.operations[0].operation_type;
@@ -32,7 +62,7 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     (pagina_actual == 'index.html') ? tarjeta.classList.add('col-sm-12', 'col-md-6', 'col-lg-4') : tarjeta.classList.add('col-sm-10', 'col-md-6', 'col-lg-4');
 
     tarjeta.innerHTML = `
-        <div class="tarjeta_container">
+        <div class="tarjeta_container" data-id="${id_prop}">
             <div class="tarjeta_imagen">
                 <div class="tarjeta_imagen_info">
                     <h4 class="tarjeta_precio"><span class="badge badge_tarjeta">${moneda} ${precio.toLocaleString('es-ES')}</span></h4>
@@ -53,9 +83,136 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundSize = 'cover';
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundPosition = 'center center';
 
-    if(pagina_actual == 'index.html'){
+    if (pagina_actual == 'index.html') {
         document.querySelector('#cartas_ultimos_ingresos .row').append(tarjeta);
-    } else{
+    } else {
         document.querySelector(`#container_propiedades #fila_prop_${fila}`).append(tarjeta);
     }
 }
+
+const crear_filtro = (nombre_filtro) => {
+    let select = document.querySelector(`#${nombre_filtro}`);
+
+    if (nombre_filtro == 'emprendimiento_busqueda') {
+        emprendimientos.forEach(e => {
+            const option = document.createElement('option');
+            option.value = e.name;
+            option.innerText = e.name.toLowerCase();
+            select.append(option);
+        });
+    }
+    else if (nombre_filtro == 'localidad_busqueda') {
+        localidades.forEach(l => {
+            const option = document.createElement('option');
+            option.value = l.name;
+            option.innerText = l.name.toLowerCase();
+            select.append(option);
+        })
+    }
+}
+
+const crear_mapa = () => {
+    var map = L.map('map').setView([detalle_prop.geo_lat, detalle_prop.geo_long], 15);
+    var marker = L.marker([detalle_prop.geo_lat, detalle_prop.geo_long]).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+}
+
+const cargar_imgs_detalle = () => {
+    const imagenes = detalle_prop.photos;
+    const imagen_actual = document.querySelector('#container_img_slider');
+
+    imagen_actual.style.backgroundImage = `url(${imagenes[0].image})`;
+    imagen_actual.style.backgroundSize = 'cover';
+    imagen_actual.style.backgroundPosition = 'center center';
+
+    n_img_detalle_actual = 0;
+
+    console.log(imagenes);
+
+}
+
+const cargar_caracteristicas = () =>{
+    document.querySelector('#main_detalle h1').innerText = detalle_prop.publication_title;
+    document.querySelector('#precio_detalle').innerText = `${detalle_prop.operations[0].prices[0].currency} ${detalle_prop.operations[0].prices[0].price}`;
+    document.querySelector('#tipo_oper_detalle').innerText = detalle_prop.operations[0].operation_type;
+    document.querySelector('#tipo_prop_detalle').innerText = detalle_prop.type.name;
+    document.querySelector('#localidad_detalle').innerText = detalle_prop.location.name;
+    document.querySelector('#dormitorios_detalle').innerText = detalle_prop.room_amount;
+    document.querySelector('#banios_detalle').innerText = detalle_prop.bathroom_amount;
+    document.querySelector('#superficie_detalle').innerHTML = `${detalle_prop.surface} m<sup>2</sup>`;
+    document.querySelector('#descripcion_detalle').innerHTML = detalle_prop.rich_description;
+
+    document.querySelector('#dormitorios_caract').innerText = `Dormitorios: ${detalle_prop.room_amount}`;
+    document.querySelector('#banios_caract').innerText = `Baños: ${detalle_prop.bathroom_amount}`;
+    document.querySelector('#sup_cubierta_caract').innerHTML = `Superficie Cubierta: ${detalle_prop.roofed_surface} m<sup>2</sup>`;
+    document.querySelector('#sup_total_caract').innerHTML = `Superficie Total: ${detalle_prop.surface} m<sup>2</sup>`;
+    document.querySelector('#precio_caract').innerText = `Precio: ${detalle_prop.operations[0].prices[0].currency} ${detalle_prop.operations[0].prices[0].price}`;
+    document.querySelector('#ubicacion_caract').innerText = `Ubicación: ${detalle_prop.location.short_location}`;
+}
+
+const cargar_servicios = () =>{
+    let cant_servicios = 0;
+    let num_lista = 1;
+
+    detalle_prop.tags.forEach(s => {
+        let li = document.createElement('li');
+        let ul;
+        li.innerText = s.name;
+
+        if(cant_servicios <= 5){
+            num_lista = 1;
+        }
+        else if(cant_servicios > 7 && cant_servicios <= 14){
+            num_lista = 2;
+        }
+        else if(cant_servicios > 14 && cant_servicios <= 21){
+            num_lista = 3;
+        }
+        else{
+            num_lista = 4;
+        }
+
+        ul = document.querySelector(`#lista_servicios_${num_lista}`);
+        ul.append(li);
+
+        cant_servicios++;
+    });
+}
+
+const llenar_detalle_prop = () => {
+    cargar_caracteristicas();
+    cargar_servicios()
+    crear_mapa();
+    cargar_imgs_detalle();
+}
+
+
+const siguiente_img = () => {
+    let orden_nueva_img = n_img_detalle_actual + 1;
+    console.log('orden actual: ' + n_img_detalle_actual + ' orden evaluado: ' + orden_nueva_img + ' Limite: ' + detalle_prop.photos.length);
+    if (orden_nueva_img <= detalle_prop.photos.length-1) {
+        let nueva_img = detalle_prop.photos.find(p => p.order == orden_nueva_img);
+
+        const container_img = document.querySelector('#container_img_slider');
+
+        if(nueva_img){container_img.style.backgroundImage = `url(${nueva_img.image})`;}
+        n_img_detalle_actual = orden_nueva_img;
+    }
+}
+
+const anterior_img = () => {
+    let orden_nueva_img = n_img_detalle_actual - 1;
+
+    if (orden_nueva_img >= 0) {
+        let nueva_img = detalle_prop.photos.find(p => p.order == orden_nueva_img);
+
+        const container_img = document.querySelector('#container_img_slider');
+
+        container_img.style.backgroundImage = `url(${nueva_img.image})`;
+        n_img_detalle_actual = orden_nueva_img;
+    }
+}
+

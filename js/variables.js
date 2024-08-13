@@ -9,10 +9,13 @@ const options = {
     }
 };
 
-/*class Propiedad {
-    constructor(id, titu)
-}*/
+
+const id_zona_norte = 147;
 
 var pagina_actual = window.location.pathname.split('/').pop();
 var ultimos_ingresos;
 var propiedades;
+var localidades;
+var emprendimientos;
+var detalle_prop;
+var n_img_detalle_actual;

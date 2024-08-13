@@ -141,20 +141,42 @@ main h1 {
     font-size: 35px;
 }
 
-#form_busqueda {
+#busqueda_rapida {
+    position: relative;
     z-index: 8;
-    width: 50%;
     top: 45%;
-    left: 25%;
+    left: 15%;
+    color: #FFFFFF;
 }
 
-#form_busqueda #select_tipo_prop {
+#busqueda_rapida #select_tipo_prop {
     background-color: #eae9e9;
     flex: 0 1 27%;
 }
 
-#form_busqueda #btn_busqueda_ppal {
-    background-color: #90AAAC;
+#map{
+    height: 50vh;
+    width: 100%;
+    z-index: 0;
+}
+
+#busqueda_rapida #btn_buscar_rapido {
+    background-color: #849c9e;
+    margin-top: 13.5%;
+    transition: 0.3s;
+    border: none;
+}
+
+#busqueda_rapida #btn_buscar_rapido:hover{
+    background-color: #90AAAC
+}
+
+#busqueda_rapida select{
+    transition: 0.3s;
+}
+
+#busqueda_rapida select:hover{
+    background-color: #d8d8d8;
 }
 
 /*ULTIMOS INGRESOS*/
@@ -771,14 +793,24 @@ iframe {
     height: 50vh;
 }
 
-.carousel-inner {
+#container_img_slider {
     height: 70vh;
     transition: 0.5s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.carousel-inner img {
-    height: 100%;
-    object-fit: cover;
+#container_img_slider .btn_slider{
+    width: 10%;
+    height: 10vh;
+    transition: 0.3s;
+}
+
+#container_img_slider .btn_slider:hover{
+    cursor: pointer;
+    filter: brightness(1.7);
 }
 
 

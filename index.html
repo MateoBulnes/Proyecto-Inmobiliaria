@@ -56,18 +56,48 @@
     <!--MAIN-->
     <main>
         <h1>Encontra la casa de tus sueños</h1>
-        <div class="input-group mb-3" id="form_busqueda">
-            <select class="form-select" id="select_tipo_prop">
-                <option selected>Tipo de Propiedad</option>
-                <option value="depto">Departamento</option>
-                <option value="casa">Casa</option>
-                <option value="oficina">Oficina</option>
-            </select>
-            <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-            <button class="btn" type="button" id="btn_busqueda_ppal">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </button>
+        <div class="row" id="busqueda_rapida">
+            <div class="col-sm-2">
+                <label for="tipo_oper_busqueda" class="form-label">Operación</label>
+                <select class="form-select" aria-label="Seleccione" id="tipo_oper_busqueda">
+                    <option selected>Todas</option>
+                    <option value="venta">Venta</option>
+                    <option value="alquiler">Alquiler</option>
+                    <option value="alquiler_temp">Alquiler Temporario</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="tipo_prop_busqueda" class="form-label">Propiedad</label>
+                <select class="form-select" aria-label="Seleccione" id="tipo_prop_busqueda">
+                    <option selected>Todas</option>
+                    <option value="terreno">Terreno</option>
+                    <option value="departamento">Departamento</option>
+                    <option value="casa">Casa</option>
+                    <option value="oficina">Oficina</option>
+                    <option value="local">Local</option>
+                    <option value="ph">PH</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="localidad_busqueda" class="form-label">Localidades</label>
+                <select class="form-select" aria-label="Seleccione" id="localidad_busqueda" >
+                    <option selected>Todas</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="emprendimiento_busqueda" class="form-label">Emprendimiento</label>
+                <select class="form-select" aria-label="Seleccione" id="emprendimiento_busqueda">
+                    <option selected>Todos</option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <button class="btn btn-primary" id="btn_buscar_rapido">Buscar</button>
+            </div>
+            <div class="col-sm-2"></div>
         </div>
     </main>
     <!--END MAIN-->
@@ -78,7 +108,7 @@
         <div id="cartas_ultimos_ingresos">
             <!--Agrego las tarjetas con JS-->
             <div class="row">
-                
+
             </div>
         </div>
     </section>
@@ -97,7 +127,8 @@
                 <h5>Redes</h5>
                 <hr>
                 <ul>
-                    <li><a href="https://www.instagram.com/perezguerreropropiedades/"><img src="/media/icono_instagram_footer.png" alt="" class="icono_redes"></a></li>
+                    <li><a href="https://www.instagram.com/perezguerreropropiedades/"><img
+                                src="/media/icono_instagram_footer.png" alt="" class="icono_redes"></a></li>
                     <li><a href="#"><img src="/media/icono_facebook_footer.png" alt="" class="icono_redes"></a></li>
                     <li><a href="#"><img src="/media/icono_linkedin_footer.png" alt="" class="icono_redes"></a></li>
                     <li><a href="#"><img src="/media/icono_tiktok_footer.png" alt="" class="icono_redes"></a></li>
@@ -137,7 +168,8 @@
             </div>
         </div>
         <div class="row" id="disclaimer_footer">
-            <p>2024 - Reservados todos los derechos Perez Guerrero Propiedades - Florencia Perez Guerrero (C.M.Z.C 627)</p>
+            <p>2024 - Reservados todos los derechos Perez Guerrero Propiedades - Florencia Perez Guerrero (C.M.Z.C 627)
+            </p>
             <span>Desarrollado por Mateo Bulnes</span>
         </div>
     </footer>
