@@ -155,13 +155,13 @@ main h1 {
 }
 
 #map{
-    height: 50vh;
+    height: 60vh;
     width: 100%;
     z-index: 0;
 }
 
 #busqueda_rapida #btn_buscar_rapido {
-    background-color: #849c9e;
+    background-color: #282829;
     margin-top: 13.5%;
     transition: 0.3s;
     border: none;
@@ -214,6 +214,7 @@ main h1 {
     height: 50vh;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
 }
 
 .tarjeta_container:hover {
@@ -225,6 +226,8 @@ main h1 {
     flex-direction: column;
     justify-content: flex-end;
     height: 70%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 .tarjeta_imagen .tarjeta_imagen_info {
@@ -633,7 +636,7 @@ footer #disclaimer_footer span{
 
 /*PROPIEDADES*/
 #main_propiedades {
-    margin-top: 8%;
+    margin-top: 5%;
     color: #282829;
 }
 
@@ -728,9 +731,11 @@ footer #disclaimer_footer span{
 /*tarjetas propiedades*/
 
 #main_propiedades #container_propiedades {
-    background-color: #FAFAFA;
-    margin-left: 2%;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
+    /*background-color: #FAFAFA;*/
+    margin: 2%;
+    /*box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);*/
+    width: 96%;
+    padding-bottom: 1%;
 }
 
 #main_propiedades #container_propiedades .row {
@@ -762,12 +767,45 @@ footer #disclaimer_footer span{
     width: 10%;
 }
 
+#navegacion_detalle span{
+    transition: 0.3s;
+}
+
 #navegacion_detalle span:hover {
     color: #90AAAC;
 }
 
-#main_detalle h1 {
-    margin: 2% 0 2% 2%;
+#main_detalle{
+    margin-top: 6.5%;
+}
+
+.icono_detalle{
+    width: 50%;
+}
+
+#main_detalle .info_ppal_detalle{
+    text-align: center;
+}
+
+#main_detalle .info_ppal_detalle h5{
+    margin-top: 5%;
+    font-weight: 550;
+}
+
+#main_detalle .info_ppal_detalle #dormitorios_detalle{
+    margin-top: 1%;
+}
+
+#main_detalle .info_ppal_detalle #banios_detalle{
+    margin-top: 11%;
+}
+
+#icono_cama{
+    width: 54%;
+}
+
+#icono_banio{
+    width: 44%;
 }
 
 #main_detalle .container_detalle {
@@ -782,6 +820,33 @@ footer #disclaimer_footer span{
 #main_detalle .container_detalle #container_info_detalle {
     color: #FFFFFF;
     padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#main_detalle h1{
+    padding-left: 1%;
+}
+
+#main_detalle #tipo_oper_detalle{
+    padding: 1% 5%;
+    background-color: #90AAAC;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#main_detalle .container_detalle #container_info_detalle #container_precio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    margin-top: 3%;
+}
+
+#main_detalle .container_detalle #container_info_detalle #precio_detalle{
+    margin-bottom: 0;
 }
 
 .container_info_prop {
@@ -811,6 +876,42 @@ iframe {
 #container_img_slider .btn_slider:hover{
     cursor: pointer;
     filter: brightness(1.7);
+}
+
+#main_detalle #container_contacto_detalle #form_detalle{
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#carta_contacto_detalle{
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    padding: 2%;
+    text-align: center;
+    margin-top: 5%;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+    
+}
+
+#main_detalle #container_contacto_detalle #form_detalle #mensaje_contacto_detalle{
+    height: 20vh;
+}
+
+#main_detalle #container_contacto_detalle #btn_enviar_contacto_detalle{
+    background-color: #282829;
+    color: #FFFFFF;
+    transition: 0.3s;
+    width: 30%;
+}
+
+#main_detalle #container_contacto_detalle #btn_enviar_contacto_detalle:hover{
+    background-color: #90AAAC;
+}
+
+#seccion_detalle_prop .col-sm-4{
+    padding-left: 0;
 }
 
 

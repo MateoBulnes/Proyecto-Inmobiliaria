@@ -129,17 +129,12 @@ const cargar_imgs_detalle = () => {
     imagen_actual.style.backgroundPosition = 'center center';
 
     n_img_detalle_actual = 0;
-
-    console.log(imagenes);
-
 }
 
-const cargar_caracteristicas = () =>{
+const cargar_caracteristicas = () => {
     document.querySelector('#main_detalle h1').innerText = detalle_prop.publication_title;
-    document.querySelector('#precio_detalle').innerText = `${detalle_prop.operations[0].prices[0].currency} ${detalle_prop.operations[0].prices[0].price}`;
+    document.querySelector('#precio_detalle').innerText = `${detalle_prop.operations[0].prices[0].currency} ${detalle_prop.operations[0].prices[0].price.toLocaleString('es-ES')}`;
     document.querySelector('#tipo_oper_detalle').innerText = detalle_prop.operations[0].operation_type;
-    document.querySelector('#tipo_prop_detalle').innerText = detalle_prop.type.name;
-    document.querySelector('#localidad_detalle').innerText = detalle_prop.location.name;
     document.querySelector('#dormitorios_detalle').innerText = detalle_prop.room_amount;
     document.querySelector('#banios_detalle').innerText = detalle_prop.bathroom_amount;
     document.querySelector('#superficie_detalle').innerHTML = `${detalle_prop.surface} m<sup>2</sup>`;
@@ -153,31 +148,23 @@ const cargar_caracteristicas = () =>{
     document.querySelector('#ubicacion_caract').innerText = `Ubicación: ${detalle_prop.location.short_location}`;
 }
 
-const cargar_servicios = () =>{
-    let cant_servicios = 0;
-    let num_lista = 1;
 
-    detalle_prop.tags.forEach(s => {
+const cargar_servicios = () => {
+    const totalServicios = detalle_prop.tags.length;
+    const serviciosPorLista = Math.ceil(totalServicios / 3); 
+    let listaIndex = 1;
+    let cant_servicios = 0;
+
+    detalle_prop.tags.forEach((s, index) => {
         let li = document.createElement('li');
-        let ul;
         li.innerText = s.name;
 
-        if(cant_servicios <= 5){
-            num_lista = 1;
-        }
-        else if(cant_servicios > 7 && cant_servicios <= 14){
-            num_lista = 2;
-        }
-        else if(cant_servicios > 14 && cant_servicios <= 21){
-            num_lista = 3;
-        }
-        else{
-            num_lista = 4;
+        if (index > 0 && index % serviciosPorLista === 0) {
+            listaIndex++;
         }
 
-        ul = document.querySelector(`#lista_servicios_${num_lista}`);
+        let ul = document.querySelector(`#lista_servicios_${listaIndex}`);
         ul.append(li);
-
         cant_servicios++;
     });
 }
@@ -192,13 +179,12 @@ const llenar_detalle_prop = () => {
 
 const siguiente_img = () => {
     let orden_nueva_img = n_img_detalle_actual + 1;
-    console.log('orden actual: ' + n_img_detalle_actual + ' orden evaluado: ' + orden_nueva_img + ' Limite: ' + detalle_prop.photos.length);
-    if (orden_nueva_img <= detalle_prop.photos.length-1) {
+    if (orden_nueva_img <= detalle_prop.photos.length - 1) {
         let nueva_img = detalle_prop.photos.find(p => p.order == orden_nueva_img);
 
         const container_img = document.querySelector('#container_img_slider');
 
-        if(nueva_img){container_img.style.backgroundImage = `url(${nueva_img.image})`;}
+        if (nueva_img) { container_img.style.backgroundImage = `url(${nueva_img.image})`; }
         n_img_detalle_actual = orden_nueva_img;
     }
 }

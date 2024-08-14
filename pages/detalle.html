@@ -55,12 +55,6 @@
 
     <!--END NAVBAR-->
 
-    <div id="navegacion_detalle">
-        <a href="../pages/propiedades.html">
-            <img src="../media/icono_volver.png" alt="icono volver">
-            <span>Volver</span>
-        </a>
-    </div>
 
     <!--MAIN-->
     <section id="main_detalle">
@@ -71,35 +65,31 @@
                     <img src="../media/btn_siguiente.png" alt="" class="btn_slider" onclick="siguiente_img()">
                 </div>
             </div>
-            <div class="col-md-4" id="container_info_detalle">
-                <h1></h1>
-                <h3 id="precio_detalle"></h3>
-                <span id="tipo_oper_detalle"></span>
+            <div class="col-md-5" id="container_info_detalle">
+                <div id="header_ppal_detalle">
+                    <h1></h1>
+                    <div id="container_precio">
+                        <h3 id="precio_detalle"></h3>
+                        <span id="tipo_oper_detalle"></span>
+                    </div>
+                </div>
                 <div class="info_ppal_detalle">
+
                     <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Tipo de Propiedad</h5>
-                            <p id="tipo_prop_detalle"></p>
+                        <div class="col-sm-4 col-md-4">
+                            <img src="../media/icono_superficie.png" alt="icono superficie" class="icono_detalle"
+                                id="icono_superficie">
+                            <h5 id="superficie_detalle"></h5>
                         </div>
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Localidad</h5>
-                            <p id="localidad_detalle"></p>
+                        <div class="col-sm-4 col-md-4">
+                            <img src="../media/icono_dormitorios.png" alt="icono dormitorios" class="icono_detalle"
+                                id="icono_cama">
+                            <h5 id="dormitorios_detalle"></h5>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Dormitorios</h5>
-                            <p id="dormitorios_detalle"></p>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Baños</h5>
-                            <p id="banios_detalle"></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <h5>Superficie Cubierta</h5>
-                            <p id="superficie_detalle"></p>
+                        <div class="col-sm-4 col-md-4">
+                            <img src="../media/icono_banio.png" alt="icono baños" class="icono_detalle"
+                                id="icono_banio">
+                            <h5 id="banios_detalle"></h5>
                         </div>
                     </div>
                 </div>
@@ -109,7 +99,7 @@
 
         <div id="seccion_detalle_prop">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="row container_info_prop">
                         <h4>Características</h4>
                         <hr>
@@ -132,24 +122,19 @@
                     <div class="row container_info_prop">
                         <h4>Servicios</h4>
                         <hr>
-                        <div class="col-sm-3 col-md-3 contenido_info">
+                        <div class="col-sm-4 col-md-4 contenido_info">
                             <ul id="lista_servicios_1">
-                                
+
                             </ul>
                         </div>
-                        <div class="col-sm-3 col-md-3 contenido_info">
+                        <div class="col-sm-4 col-md-4 contenido_info">
                             <ul id="lista_servicios_2">
-                                
+
                             </ul>
                         </div>
-                        <div class="col-sm-3 col-md-3 contenido_info">
+                        <div class="col-sm-4 col-md-4 contenido_info">
                             <ul id="lista_servicios_3">
-                                
-                            </ul>
-                        </div>
-                        <div class="col-sm-3 col-md-3 contenido_info">
-                            <ul id="lista_servicios_4">
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -161,13 +146,51 @@
 
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
+
                     <div class="container_info_prop row">
                         <h4>Ubicación</h4>
                         <hr>
                         <div class="col-md-12 contenido_info" id="map">
 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row container_info_prop" id="carta_contacto_detalle">
+                        <h4>Contactanos</h4>
+                        <div class="col-md-12" id="container_contacto_detalle">
+                            <form action="#" id="form_detalle">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="nombre_contacto_detalle" placeholder="Nombre">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control" id="mail_contacto_detalle" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="telefono_contacto_detalle" placeholder="Telefono">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <textarea name="mensaje" id="mensaje_contacto_detalle"
+                                            class="form-control" placeholder="Mensaje"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn" id="btn_enviar_contacto_detalle">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -213,7 +236,7 @@
                         </button>
                     </li>
                     <li>
-                        <button class="btn btn_footer">
+                        <button class="btn btn_footer" id="btn_mail_footer">
                             <div class="container_btn_footer">
                                 <img src="../media/gmail_icono_footer.png" alt="" id="icono_mail_footer">
                                 <span id="gmail_footer">info@perezguerreropropiedades.com.ar</span>

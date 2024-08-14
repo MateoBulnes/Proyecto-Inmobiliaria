@@ -1,3 +1,5 @@
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 
 window.addEventListener("scroll", () => {
@@ -79,10 +81,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if(id_prop){
                 await obtener_detalle_prop(id_prop);
-                console.log(detalle_prop);
                 llenar_detalle_prop();
             }
 
             break;
     }
 });
+
+document.querySelector('#btn_mail_footer').addEventListener('click', function(){
+    const mail = "info@perezguerreropropiedades.com.ar";
+    
+    navigator.clipboard.writeText(mail).then(function() {
+        
+    }).catch(function(error) {
+        console.error('Error al copiar el texto: ', error);
+    });
+})
