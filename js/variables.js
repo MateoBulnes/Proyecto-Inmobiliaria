@@ -19,3 +19,6 @@ var localidades;
 var emprendimientos;
 var detalle_prop;
 var n_img_detalle_actual;
+var cant_total_prop;
+var resultados_busqueda;
+var cant_resultados_busqueda;

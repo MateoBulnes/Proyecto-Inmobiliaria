@@ -13,6 +13,7 @@ const obtener_propiedades = async (offset = 0, limite = 9) => {
     const resp = await fetch(url, options);
 
     const data = await resp.json();
+    cant_total_prop = data.meta.total_count;
     propiedades = data.objects;
 }
 
@@ -41,6 +42,72 @@ const obtener_detalle_prop = async (id_prop) => {
     const data = await resp.json();
 
     detalle_prop = data;
+}
+
+const obtener_filtros = () => {
+    let tipo_oper_ing = document.querySelector('#tipo_oper_filtro').value;
+    if (tipo_oper_ing == 'Todas') { tipo_oper_ing = '1,2,3' };
+
+    let tipo_prop_ing = document.querySelector('#tipo_prop_filtro').value;
+    if (tipo_prop_ing == 'Todas') { tipo_prop_ing = '1,2,3,5,7,13' };
+
+    let localidad_ing = document.querySelector('#localidad_filtro').value;
+    if (localidad_ing == 'Todas') { localidad_ing = localidades.map(localidad => localidad.id).join(',') }
+
+    let precio_ing = document.querySelector('#precio_filtro').value;
+    if (precio_ing == 'Todos') { precio_ing = '5000000' };
+
+    let emprendimiento_ing = document.querySelector('#emprendimiento_filtro').value;
+    if (emprendimiento_ing == 'Todos') { 
+        emprendimiento_ing = '' 
+    } else{
+        emprendimiento_ing = `["development__id","op","${emprendimiento_ing}"]`;
+    };
+
+    let moneda_ing;
+    document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
+        if(b.checked){
+            moneda_ing = b.value;
+        }
+    });
+
+    return {
+        tipo_oper: tipo_oper_ing,
+        tipo_prop: tipo_prop_ing,
+        localidad: localidad_ing,
+        emprendimiento: emprendimiento_ing,
+        moneda: moneda_ing,
+        precio: precio_ing
+    }
+}
+
+const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio }) => {
+    const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": 0,"price_to": ${precio},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
+
+    console.log(data_filtros);
+
+    const url = `https://www.tokkobroker.com/api/v1/property/search?&lang=es_ar&format=json&limit=40&data=${data_filtros}&key=${API_KEY}`;
+
+    const resp = await fetch(url, options);
+
+    const data = await resp.json();
+    resultados_busqueda = data.objects;
+    cant_resultados_busqueda = data.meta.total_count;
+}
+
+
+const mostrar_pantalla_carga = () => {
+    let loader = document.querySelector('.cargador_hidden');
+
+    loader.classList.remove('cargador_hidden');
+    loader.classList.add('cargador');
+}
+
+const ocultar_pantalla_carga = () => {
+    let loader = document.querySelector('.cargador');
+
+    loader.classList.remove('cargador');
+    loader.classList.add('cargador_hidden');
 }
 
 /*CREACION DE ELEMENTOS*/
@@ -90,21 +157,25 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     }
 }
 
-const crear_filtro = (nombre_filtro) => {
+
+const crear_filtro = (nombre_filtro, pagina = 'index') => {
     let select = document.querySelector(`#${nombre_filtro}`);
 
-    if (nombre_filtro == 'emprendimiento_busqueda') {
+    if (pagina == 'index') { select = document.querySelector(`#${nombre_filtro}_busqueda`) }
+    else { select = document.querySelector(`#${nombre_filtro}_filtro`) }
+
+    if (nombre_filtro == 'emprendimiento') {
         emprendimientos.forEach(e => {
             const option = document.createElement('option');
-            option.value = e.name;
+            option.value = e.id;
             option.innerText = e.name.toLowerCase();
             select.append(option);
         });
     }
-    else if (nombre_filtro == 'localidad_busqueda') {
+    else if (nombre_filtro == 'localidad') {
         localidades.forEach(l => {
             const option = document.createElement('option');
-            option.value = l.name;
+            option.value = l.id;
             option.innerText = l.name.toLowerCase();
             select.append(option);
         })
@@ -118,6 +189,66 @@ const crear_mapa = () => {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+}
+
+const acortar_desc_emprendimiento = (emprendimiento) => {
+    let index = emprendimiento.description.indexOf("Características");
+
+    if (index !== -1 && index < 400) {
+        return emprendimiento.description.substring(0, index).trim();
+    } else {
+        if (emprendimiento.name == 'NORDELTA') {
+            index = emprendimiento.description.indexOf("propios");
+            return emprendimiento.description.substring(0, index).trim();
+        }
+        else if (emprendimiento.name == 'SAN SEBASTIAN') {
+            index = emprendimiento.description.indexOf("Barrios");
+            return emprendimiento.description.substring(0, index).trim();
+        } else {
+            return emprendimiento.description;
+        }
+    }
+
+}
+
+const crear_emprendimientos = () => {
+    let n_emp_actual = 0;
+
+    emprendimientos.forEach(emp => {
+        console.log(emp.tags)
+        let columna;
+        if (n_emp_actual % 2 == 0) {
+            columna = document.querySelector('#col_1_emp');
+        } else {
+            columna = document.querySelector('#col_2_emp')
+        }
+
+        let fila = document.createElement('div');
+        fila.classList.add('row', 'fila_emprendimiento');
+
+        fila.innerHTML = `
+            <div class="col-sm-11 info_emprendimiento">
+                <div class="header_emprendimiento">
+                    <h3>${emp.name}</h3>
+                    <h6>${emp.location.short_location}</h6>
+                </div>
+                <p>${acortar_desc_emprendimiento(emp)}</p>
+                <div id="emprendimiento_${n_emp_actual}" class="container_servicios"></div>
+            </div>
+        `;
+        columna.append(fila);
+
+        let container = document.querySelector(`#emprendimiento_${n_emp_actual}`);
+        emp.tags.forEach(t => {
+            let span = document.createElement('span');
+            span.classList.add('badge', 'badge_tarjeta', 'servicio_emp');
+            span.innerText = t.name;
+
+            container.append(span);
+        });
+
+        n_emp_actual++;
+    });
 }
 
 const cargar_imgs_detalle = () => {
@@ -151,7 +282,7 @@ const cargar_caracteristicas = () => {
 
 const cargar_servicios = () => {
     const totalServicios = detalle_prop.tags.length;
-    const serviciosPorLista = Math.ceil(totalServicios / 3); 
+    const serviciosPorLista = Math.ceil(totalServicios / 3);
     let listaIndex = 1;
     let cant_servicios = 0;
 
@@ -201,4 +332,5 @@ const anterior_img = () => {
         n_img_detalle_actual = orden_nueva_img;
     }
 }
+
 
