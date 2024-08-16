@@ -215,6 +215,10 @@ main h1 {
     background-color: #d8d8d8;
 }
 
+#tag_cant_resultados{
+    color: #696969;
+}
+
 /*ULTIMOS INGRESOS*/
 
 #ultimos_ingresos {
@@ -227,6 +231,7 @@ main h1 {
 
 #ultimos_ingresos #cartas_ultimos_ingresos {
     margin-top: 2%;
+    margin-left: 1.5%;
 }
 
 #ultimos_ingresos #cartas_ultimos_ingresos .row{
@@ -363,6 +368,7 @@ footer #container_footer {
     justify-content: center;
     color: #FFFFFF;
     padding-top: 2%;
+    margin-bottom: 1%;
 }
 
 footer #container_footer #container_logo_footer {

@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     mostrar_pantalla_carga();
     switch (pagina_actual) {
         case 'index.html':
+            document.querySelector('#btn_buscar_rapido').addEventListener('click', buscar);
+
             await obtener_ultimos_ingresos();
 
             ultimos_ingresos.forEach(prop => {
@@ -50,37 +52,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             break;
 
         case 'propiedades.html':
-            await obtener_propiedades();
+            const params_busqueda = new URLSearchParams(window.location.search);
 
-            document.querySelector('#tag_cant_resultados').innerText = `${cant_total_prop} resultados encontrados`;
-
-            for (let i = 0; i < propiedades.length; i++) {
-                let fila = Math.floor(i / 3);
-                let div_row = document.getElementById(`fila_prop_${fila}`);
-
-                if (!div_row) {
-                    div_row = document.createElement('div');
-                    div_row.classList.add('row');
-                    div_row.id = `fila_prop_${fila}`;
-                    document.querySelector('#container_propiedades').append(div_row);
-                }
-                crear_tarjeta_propiedad(propiedades[i], fila);
-            }
-
-            var tarjetas = document.querySelectorAll(".tarjeta_container");
-
-            tarjetas.forEach(function (tarjeta) {
-                tarjeta.addEventListener("click", function () {
-                    const id_prop = this.getAttribute('data-id');
-                    window.location.href = `detalle.html?id=${id_prop}`;
-                });
-            });
-
-            let btn_ver_mas = document.createElement('button');
-            btn_ver_mas.classList.add('btn');
-            btn_ver_mas.id = 'btn_ver_mas';
-            btn_ver_mas.innerText = 'Ver Más';
-            document.querySelector('#container_propiedades').append(btn_ver_mas);
+            document.querySelector('#btn_aplicar_filtros').addEventListener('click', aplicar_filtros);
 
             await obtener_emprendimientos();
             crear_filtro('emprendimiento', 'propiedades');
@@ -88,7 +62,23 @@ document.addEventListener("DOMContentLoaded", async function () {
             await obtener_localidades();
             crear_filtro('localidad', 'propiedades');
 
-            ocultar_pantalla_carga();
+            if (params_busqueda.size <= 0) {
+                await obtener_propiedades();
+
+                propiedades.forEach(p => {
+                    console.log({'suite':p.suite_amount, 'room':p.room_amount})
+                })
+                
+                document.querySelector('#tag_cant_resultados').innerText = `${cant_total_prop} resultados encontrados`;
+                cargar_propiedades(propiedades);
+                cant_prop_cargadas = 9;
+                crear_btn_ver_mas();
+
+                ocultar_pantalla_carga();
+            } else {
+                cargar_filtros_busqueda();
+                ocultar_pantalla_carga();
+            }
             break;
 
         case 'nosotros.html':
@@ -99,7 +89,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         case 'emprendimientos.html':
             await obtener_emprendimientos();
-            console.log(emprendimientos);
 
             crear_emprendimientos()
 
@@ -130,43 +119,4 @@ document.querySelector('#btn_mail_footer').addEventListener('click', function ()
     }).catch(function (error) {
         console.error('Error al copiar el texto: ', error);
     });
-})
-
-document.querySelector('#btn_aplicar_filtros').addEventListener('click', async () => {
-    mostrar_pantalla_carga();
-
-    const filtros = obtener_filtros();
-
-    await filtrar_propiedades(filtros);
-    ocultar_pantalla_carga();
-    document.querySelector('#container_propiedades').innerHTML = '';
-
-    document.querySelector('#tag_cant_resultados').innerText = `${cant_resultados_busqueda} resultados encontrados`;
-
-    if (cant_resultados_busqueda > 0) {
-        document.querySelector('.container_sin_resultados').style.display = "none";
-        for (let i = 0; i < resultados_busqueda.length; i++) {
-            let fila = Math.floor(i / 3);
-            let div_row = document.getElementById(`fila_prop_${fila}`);
-
-            if (!div_row) {
-                div_row = document.createElement('div');
-                div_row.classList.add('row');
-                div_row.id = `fila_prop_${fila}`;
-                document.querySelector('#container_propiedades').append(div_row);
-            }
-            crear_tarjeta_propiedad(resultados_busqueda[i], fila);
-        }
-
-        var tarjetas = document.querySelectorAll(".tarjeta_container");
-
-        tarjetas.forEach(function (tarjeta) {
-            tarjeta.addEventListener("click", function () {
-                const id_prop = this.getAttribute('data-id');
-                window.location.href = `detalle.html?id=${id_prop}`;
-            });
-        });
-    } else {
-        document.querySelector('.container_sin_resultados').style.display = "";
-    }
 })

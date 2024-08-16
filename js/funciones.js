@@ -58,15 +58,15 @@ const obtener_filtros = () => {
     if (precio_ing == 'Todos') { precio_ing = '5000000' };
 
     let emprendimiento_ing = document.querySelector('#emprendimiento_filtro').value;
-    if (emprendimiento_ing == 'Todos') { 
-        emprendimiento_ing = '' 
-    } else{
+    if (emprendimiento_ing == 'Todos') {
+        emprendimiento_ing = ''
+    } else {
         emprendimiento_ing = `["development__id","op","${emprendimiento_ing}"]`;
     };
 
     let moneda_ing;
     document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
-        if(b.checked){
+        if (b.checked) {
             moneda_ing = b.value;
         }
     });
@@ -99,15 +99,19 @@ const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimi
 const mostrar_pantalla_carga = () => {
     let loader = document.querySelector('.cargador_hidden');
 
-    loader.classList.remove('cargador_hidden');
-    loader.classList.add('cargador');
+    if (loader) {
+        loader.classList.remove('cargador_hidden');
+        loader.classList.add('cargador');
+    }
 }
 
 const ocultar_pantalla_carga = () => {
     let loader = document.querySelector('.cargador');
 
-    loader.classList.remove('cargador');
-    loader.classList.add('cargador_hidden');
+    if (loader) {
+        loader.classList.remove('cargador');
+        loader.classList.add('cargador_hidden');
+    }
 }
 
 /*CREACION DE ELEMENTOS*/
@@ -117,7 +121,7 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     let precio = propiedad.operations[0].prices[0].price;
     let moneda = propiedad.operations[0].prices[0].currency;
     let tipo_oper = propiedad.operations[0].operation_type;
-    let cant_dormitorios = propiedad.room_amount;
+    let cant_dormitorios = propiedad.suite_amount;
     let cant_banios = propiedad.bathroom_amount;
     let superficie = propiedad.surface;
     let img_portada = propiedad.photos.find(prop => prop.is_front_cover == true);
@@ -189,6 +193,15 @@ const crear_mapa = () => {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
+}
+
+const crear_btn_ver_mas = () => {
+    let btn_ver_mas = document.createElement('button');
+    btn_ver_mas.classList.add('btn');
+    btn_ver_mas.id = 'btn_ver_mas';
+    btn_ver_mas.innerText = 'Ver Más';
+    document.querySelector('#container_propiedades').append(btn_ver_mas);
+    document.querySelector('#btn_ver_mas').addEventListener('click', cargar_mas_propiedades);
 }
 
 const acortar_desc_emprendimiento = (emprendimiento) => {
@@ -266,12 +279,12 @@ const cargar_caracteristicas = () => {
     document.querySelector('#main_detalle h1').innerText = detalle_prop.publication_title;
     document.querySelector('#precio_detalle').innerText = `${detalle_prop.operations[0].prices[0].currency} ${detalle_prop.operations[0].prices[0].price.toLocaleString('es-ES')}`;
     document.querySelector('#tipo_oper_detalle').innerText = detalle_prop.operations[0].operation_type;
-    document.querySelector('#dormitorios_detalle').innerText = detalle_prop.room_amount;
+    document.querySelector('#dormitorios_detalle').innerText = detalle_prop.suite_amount;
     document.querySelector('#banios_detalle').innerText = detalle_prop.bathroom_amount;
     document.querySelector('#superficie_detalle').innerHTML = `${detalle_prop.surface} m<sup>2</sup>`;
     document.querySelector('#descripcion_detalle').innerHTML = detalle_prop.rich_description;
 
-    document.querySelector('#dormitorios_caract').innerText = `Dormitorios: ${detalle_prop.room_amount}`;
+    document.querySelector('#dormitorios_caract').innerText = `Dormitorios: ${detalle_prop.suite_amount}`;
     document.querySelector('#banios_caract').innerText = `Baños: ${detalle_prop.bathroom_amount}`;
     document.querySelector('#sup_cubierta_caract').innerHTML = `Superficie Cubierta: ${detalle_prop.roofed_surface} m<sup>2</sup>`;
     document.querySelector('#sup_total_caract').innerHTML = `Superficie Total: ${detalle_prop.surface} m<sup>2</sup>`;
@@ -332,5 +345,88 @@ const anterior_img = () => {
         n_img_detalle_actual = orden_nueva_img;
     }
 }
+
+const cargar_propiedades = (propiedades) => {
+    for (let i = 0; i < propiedades.length; i++) {
+        let fila = Math.floor(cant_prop_cargadas + i / 3);
+        let div_row = document.getElementById(`fila_prop_${fila}`);
+
+        if (!div_row) {
+            div_row = document.createElement('div');
+            div_row.classList.add('row');
+            div_row.id = `fila_prop_${fila}`;
+            document.querySelector('#container_propiedades').append(div_row);
+        }
+        crear_tarjeta_propiedad(propiedades[i], fila);
+    }
+
+    var tarjetas = document.querySelectorAll(".tarjeta_container");
+
+    tarjetas.forEach(function (tarjeta) {
+        tarjeta.addEventListener("click", function () {
+            const id_prop = this.getAttribute('data-id');
+            window.location.href = `detalle.html?id=${id_prop}`;
+        });
+    });
+}
+
+const aplicar_filtros = async () => {
+    mostrar_pantalla_carga();
+
+    const filtros = obtener_filtros();
+
+    await filtrar_propiedades(filtros);
+
+    document.querySelector('#container_propiedades').innerHTML = '';
+
+    document.querySelector('#tag_cant_resultados').innerText = `${cant_resultados_busqueda} resultados encontrados`;
+
+    if (cant_resultados_busqueda > 0) {
+        document.querySelector('.container_sin_resultados').style.display = "none";
+        cargar_propiedades(resultados_busqueda);
+    } else {
+        document.querySelector('.container_sin_resultados').style.display = "";
+    }
+    ocultar_pantalla_carga();
+}
+
+const redireccionar_pagina = (pagina) => {
+    const tipo_oper = document.querySelector('#tipo_oper_busqueda').value;
+    const tipo_prop = document.querySelector('#tipo_prop_busqueda').value;
+    const localidad = document.querySelector('#localidad_busqueda').value;
+    const emprendimiento = document.querySelector('#emprendimiento_busqueda').value;
+
+    const url = `/pages/${pagina}.html?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}`;
+
+    window.location.href = url;
+}
+
+const cargar_filtros_busqueda = () => {
+    const params = new URLSearchParams(window.location.search);
+
+    document.querySelector('#tipo_oper_filtro').value = params.get('tipo_oper');
+    document.querySelector('#tipo_prop_filtro').value = params.get('tipo_prop');
+    document.querySelector('#localidad_filtro').value = params.get('localidad');
+    document.querySelector('#emprendimiento_filtro').value = params.get('emprendimiento');
+
+    document.querySelector('#btn_aplicar_filtros').click();
+}
+
+const buscar = () => {
+    redireccionar_pagina('propiedades');
+}
+
+const cargar_mas_propiedades = async () => {
+    mostrar_pantalla_carga();
+    await obtener_propiedades(cant_prop_cargadas, 9);
+
+    document.querySelector('#btn_ver_mas').remove();
+    cargar_propiedades(propiedades);
+    crear_btn_ver_mas();
+    cant_prop_cargadas += propiedades.length;
+    if(cant_prop_cargadas == cant_total_prop){document.querySelector('#btn_ver_mas').remove()}
+    ocultar_pantalla_carga();
+}
+
 
 
