@@ -51,6 +51,9 @@
 
     <!--END NAVBAR-->
 
+    <div id="header_contacto">
+        <h1>Contacto</h1>
+    </div>
 
     <!--MAIN-->
     <section id="main_contacto">
@@ -59,40 +62,42 @@
 
             <form action="#" id="form_contacto">
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <label for="nombre_contacto" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre_contacto">
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <label for="telefono_contacto" class="form-label">Telefono</label>
                         <input type="text" class="form-control" id="telefono_contacto">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="mail_contacto" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="mail_contacto">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-5">
-                        <label for="mail_contacto" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="mail_contacto">
-                    </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-12">
                         <label for="asunto_contacto" class="form-label">Asunto</label>
                         <input type="email" class="form-control" id="asunto_contacto">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <label for="mensaje_contacto" class="form-label">Mensaje</label>
                         <textarea name="comentario" id="mensaje_contacto" class="form-control"></textarea>
                     </div>
                 </div>
 
                 <div class="row text-center">
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <button type="submit" class="btn" id="btn_enviar_contacto">Enviar</button>
                     </div>
                 </div>
             </form>
+        </div>
+        <div id="container_img_contacto">
             <div id="container_medios_contacto">
                 <h3>Medios de Contacto</h3>
                 <div class="medio_contacto">
@@ -114,9 +119,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div id="container_img_contacto">
-            <img src="/media/foto_contacto.jpg" alt="imagen contacto" id="img_contacto">
         </div>
     </section>
     <!--END MAIN-->
