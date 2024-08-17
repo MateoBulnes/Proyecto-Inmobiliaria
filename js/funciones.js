@@ -1,7 +1,7 @@
 /*LLAMADAS A LA API*/
 const obtener_ultimos_ingresos = async () => {
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=3&order_by=deleted_at`;
-    const resp = await fetch(url, options);
+    const resp = await fetch(url);
 
     const data = await resp.json();
 
@@ -10,7 +10,7 @@ const obtener_ultimos_ingresos = async () => {
 
 const obtener_propiedades = async (offset = 0, limite = 9) => {
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=${limite}&order_by=deleted_at&offset=${offset}`;
-    const resp = await fetch(url, options);
+    const resp = await fetch(url);
 
     const data = await resp.json();
     cant_total_prop = data.meta.total_count;
@@ -20,7 +20,7 @@ const obtener_propiedades = async (offset = 0, limite = 9) => {
 const obtener_localidades = async () => {
     const url = `https://www.tokkobroker.com/api/v1/state/${id_zona_norte}/?key=${API_KEY}&lang=es_ar&format=json`;
 
-    const resp = await fetch(url, options);
+    const resp = await fetch(url);
 
     const data = await resp.json();
     localidades = data.divisions;
@@ -29,7 +29,7 @@ const obtener_localidades = async () => {
 const obtener_emprendimientos = async () => {
     const url = `https://www.tokkobroker.com/api/v1/development/?key=${API_KEY}&lang=es_ar&format=json`;
 
-    const resp = await fetch(url, options);
+    const resp = await fetch(url);
     const data = await resp.json();
 
     emprendimientos = data.objects;
@@ -38,7 +38,7 @@ const obtener_emprendimientos = async () => {
 const obtener_detalle_prop = async (id_prop) => {
     const url = `https://www.tokkobroker.com/api/v1/property/${id_prop}/?key=${API_KEY}&lang=es_ar&format=json`;
 
-    const resp = await fetch(url, options);
+    const resp = await fetch(url);
     const data = await resp.json();
 
     detalle_prop = data;
