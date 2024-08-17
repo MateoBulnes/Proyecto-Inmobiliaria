@@ -1,14 +1,29 @@
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-console.log('buenas');
+
+window.addEventListener("scroll", () => {
+    let navbar = document.querySelector('#navbar');
+    let logo_base = document.querySelector('#navbar .logo_base');
+    let logo_scroll = document.querySelector('#navbar .logo_scroll');
+
+    if (pagina_actual == 'index.html') {
+        if (window.scrollY > 0) {
+            logo_base.style.display = 'none';
+            logo_scroll.style.display = '';
+        } else {
+            logo_base.style.display = '';
+            logo_scroll.style.display = 'none';
+        }
+
+        navbar.classList.toggle('fondo_navbar', window.scrollY > 0);
+    }
+});
 
 document.addEventListener("DOMContentLoaded", async function () {
-    console.log('pagina cargada');
-    console.log(pagina_actual);
     mostrar_pantalla_carga();
     switch (pagina_actual) {
-        case 'index.html':
+        case 'index':
             document.querySelector('#btn_buscar_rapido').addEventListener('click', buscar);
 
             await obtener_ultimos_ingresos();
@@ -36,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             break;
 
-        case 'propiedades.html':
+        case 'propiedades':
             const params_busqueda = new URLSearchParams(window.location.search);
 
             document.querySelector('#btn_aplicar_filtros').addEventListener('click', aplicar_filtros);
@@ -66,13 +81,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
             break;
 
-        case 'nosotros.html':
+        case 'nosotros':
             ocultar_pantalla_carga();
             let video = document.getElementById("video_nosotros");
             video.play();
             break;
 
-        case 'emprendimientos.html':
+        case 'emprendimientos':
             await obtener_emprendimientos();
 
             crear_emprendimientos()
@@ -93,24 +108,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             break;
-    }
-});
-
-window.addEventListener("scroll", () => {
-    let navbar = document.querySelector('#navbar');
-    let logo_base = document.querySelector('#navbar .logo_base');
-    let logo_scroll = document.querySelector('#navbar .logo_scroll');
-
-    if (pagina_actual == 'index.html') {
-        if (window.scrollY > 0) {
-            logo_base.style.display = 'none';
-            logo_scroll.style.display = '';
-        } else {
-            logo_base.style.display = '';
-            logo_scroll.style.display = 'none';
-        }
-
-        navbar.classList.toggle('fondo_navbar', window.scrollY > 0);
     }
 });
 

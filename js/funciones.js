@@ -155,7 +155,7 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundSize = 'cover';
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundPosition = 'center center';
 
-    if (pagina_actual == 'index.html') {
+    if (pagina_actual == 'index') {
         document.querySelector('#cartas_ultimos_ingresos .row').append(tarjeta);
     } else {
         document.querySelector(`#container_propiedades #fila_prop_${fila}`).append(tarjeta);

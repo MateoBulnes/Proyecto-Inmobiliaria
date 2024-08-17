@@ -12,7 +12,7 @@ const options = {
 
 const id_zona_norte = 147;
 
-var pagina_actual = window.location.pathname.split('/').pop();
+var pagina_actual = document.querySelector('.pagina_actual').value;
 var ultimos_ingresos;
 var propiedades;
 var localidades;
