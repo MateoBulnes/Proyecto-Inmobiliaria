@@ -354,7 +354,7 @@ main h1 {
 
 /*FOOTER*/
 footer {
-    height: 30vh;
+    height: 36vh;
     width: 100%;
     background-color: #282829;
     margin-top: 5%;
@@ -383,7 +383,13 @@ footer #container_footer #container_contacto_footer {
 }
 
 footer #container_footer #container_links_footer {
-    width: 15%;
+    width: 22%;
+}
+
+footer #container_footer #container_links_footer #container_lista_links{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
 }
 
 footer #container_footer #container_redes_footer {
@@ -404,8 +410,7 @@ footer #container_footer #container_contacto_footer ul li img {
 
 footer #container_footer #container_contacto_footer h5,
 footer #container_footer #container_redes_footer h5,
-footer #container_footer #container_links_footer h5,
-footer #container_footer #container_links_footer ul {
+footer #container_footer #container_links_footer h5{
     width: 90%;
     text-align: center;
 }

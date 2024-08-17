@@ -60,33 +60,34 @@
         <div id="container_contacto">
             <h2>Envianos un mensaje</h2>
 
-            <form action="#" id="form_contacto">
+            <form method="POST" action="https://formsubmit.co/matebulnes32@gmail.com" id="form_contacto">
                 <div class="row">
                     <div class="col-sm-4">
                         <label for="nombre_contacto" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_contacto">
+                        <input type="text" class="form-control" id="nombre_contacto" name="nombre">
                     </div>
                     <div class="col-sm-4">
                         <label for="telefono_contacto" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="telefono_contacto">
+                        <input type="text" class="form-control" id="telefono_contacto" name="telefono">
                     </div>
                     <div class="col-sm-4">
                         <label for="mail_contacto" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="mail_contacto">
+                        <input type="email" class="form-control" id="mail_contacto" name="mail">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="asunto_contacto" class="form-label">Asunto</label>
-                        <input type="email" class="form-control" id="asunto_contacto">
+                        <input type="text" class="form-control" id="asunto_contacto" name="asunto">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12">
                         <label for="mensaje_contacto" class="form-label">Mensaje</label>
-                        <textarea name="comentario" id="mensaje_contacto" class="form-control"></textarea>
+                        <textarea name="comentario" id="mensaje_contacto" class="form-control"
+                            name="mensaje"></textarea>
                     </div>
                 </div>
 
@@ -95,6 +96,9 @@
                         <button type="submit" class="btn" id="btn_enviar_contacto">Enviar</button>
                     </div>
                 </div>
+
+                <input type="hidden" name="_next" value="http://172.29.224.1:8080/pages/contacto.html">
+                <input type="hidden" name="_captcha" value="false">
             </form>
         </div>
         <div id="container_img_contacto">
@@ -113,7 +117,7 @@
                     </a>
                 </div>
                 <div class="medio_contacto">
-                    <a href="#">
+                    <a href="#https://www.instagram.com/perezguerreropropiedades/">
                         <img src="/media/icono_instagram_contacto.png" alt="icono instagram" class="icono_contacto">
                         <h5>@perezguerrero</h5>
                     </a>
@@ -137,8 +141,9 @@
                 <h5>Redes</h5>
                 <hr>
                 <ul>
-                    <li><a href="#"><img src="../media/icono_instagram_footer.png" alt="icono instagram"
-                                class="icono_redes"></a></li>
+                    <li><a href="https://www.instagram.com/perezguerreropropiedades/"><img
+                                src="../media/icono_instagram_footer.png" alt="icono instagram" class="icono_redes"></a>
+                    </li>
                     <li><a href="#"><img src="../media/icono_facebook_footer.png" alt="icono facebook"
                                 class="icono_redes"></a></li>
                     <li><a href="#"><img src="../media/icono_linkedin_footer.png" alt="icono linkedin"
@@ -195,6 +200,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="../js/variables.js"></script>
+    <script src="../js/funciones.js"></script>
     <script src="../js/app.js"></script>
 </body>
 

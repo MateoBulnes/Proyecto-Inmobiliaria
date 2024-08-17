@@ -1,25 +1,6 @@
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-
-window.addEventListener("scroll", () => {
-    let navbar = document.querySelector('#navbar');
-    let logo_base = document.querySelector('#navbar .logo_base');
-    let logo_scroll = document.querySelector('#navbar .logo_scroll');
-
-    if (pagina_actual == 'index.html') {
-        if (window.scrollY > 0) {
-            logo_base.style.display = 'none';
-            logo_scroll.style.display = '';
-        } else {
-            logo_base.style.display = '';
-            logo_scroll.style.display = 'none';
-        }
-
-        navbar.classList.toggle('fondo_navbar', window.scrollY > 0);
-    }
-});
-
 document.addEventListener("DOMContentLoaded", async function () {
     mostrar_pantalla_carga();
     switch (pagina_actual) {
@@ -66,9 +47,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 await obtener_propiedades();
 
                 propiedades.forEach(p => {
-                    console.log({'suite':p.suite_amount, 'room':p.room_amount})
+                    console.log({ 'suite': p.suite_amount, 'room': p.room_amount })
                 })
-                
+
                 document.querySelector('#tag_cant_resultados').innerText = `${cant_total_prop} resultados encontrados`;
                 cargar_propiedades(propiedades);
                 cant_prop_cargadas = 9;
@@ -110,6 +91,26 @@ document.addEventListener("DOMContentLoaded", async function () {
             break;
     }
 });
+
+window.addEventListener("scroll", () => {
+    let navbar = document.querySelector('#navbar');
+    let logo_base = document.querySelector('#navbar .logo_base');
+    let logo_scroll = document.querySelector('#navbar .logo_scroll');
+
+    if (pagina_actual == 'index.html') {
+        if (window.scrollY > 0) {
+            logo_base.style.display = 'none';
+            logo_scroll.style.display = '';
+        } else {
+            logo_base.style.display = '';
+            logo_scroll.style.display = 'none';
+        }
+
+        navbar.classList.toggle('fondo_navbar', window.scrollY > 0);
+    }
+});
+
+
 
 document.querySelector('#btn_mail_footer').addEventListener('click', function () {
     const mail = "info@perezguerreropropiedades.com.ar";
