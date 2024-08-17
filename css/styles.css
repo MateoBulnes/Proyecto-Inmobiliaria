@@ -1068,7 +1068,7 @@ iframe {
     }
 }
 
-@media (max-width: 1399px){
+@media (max-width: 1405px){
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 5%;
     }
