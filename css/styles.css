@@ -1009,6 +1009,7 @@ iframe {
 
 #col_2_emp{
     padding-left: 0;
+    padding-right: 1%;
 }
 
 #col_2_emp .fila_emprendimiento{
@@ -1060,11 +1061,21 @@ iframe {
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 5%;
     }
+
+    .fila_emprendimiento {
+        height: 50vh;
+    }
 }
 
 @media (max-width: 1432px){
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 5%;
+    }
+}
+
+@media (max-width: 1411px){
+    .fila_emprendimiento {
+        height: 55vh;
     }
 }
 
@@ -1096,12 +1107,25 @@ iframe {
     #icono_wpp {
         right: -35%;
     }
-
 }
 
 @media (max-width: 1296px){
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 3%;
+    }
+}
+
+@media (max-width: 1200px){
+    .fila_emprendimiento{
+        margin-left: 0;
+    }
+
+    #col_1_emp .fila_emprendimiento {
+        margin-right: 1%;
+    }
+
+    #col_2_emp .fila_emprendimiento {
+        margin-left: 1.5%;
     }
 }
 
@@ -1336,6 +1360,9 @@ iframe {
     #icono_wpp {
         right: -83%;
     }
+    .fila_emprendimiento {
+        height: 65vh;
+    }
 }
 
 @media (max-width: 450px){
@@ -1357,6 +1384,9 @@ iframe {
 @media (max-width: 380px){
     #icono_wpp {
         right: -115%;
+    }
+    .fila_emprendimiento {
+        height: 70vh;
     }
 }
 
