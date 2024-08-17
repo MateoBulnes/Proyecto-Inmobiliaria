@@ -1056,6 +1056,26 @@ iframe {
     .tarjeta_container{
         height: 60vh;
     }
+
+    #main_propiedades #container_filtros .btn_radio {
+        padding: 5% 6%;
+    }
+}
+
+@media (max-width: 1432px){
+    #main_propiedades #container_filtros .btn_radio {
+        padding: 5% 5%;
+    }
+}
+
+@media (max-width: 1360px){
+    #main_propiedades #container_filtros .btn_radio {
+        padding: 5% 4%;
+    }
+
+    #main_propiedades #container_filtros #container_radio_btns {
+        padding-top: 2.6%;
+    }
 }
 
 @media (max-width: 1345px) {
@@ -1070,7 +1090,14 @@ iframe {
     #icono_wpp {
         right: -35%;
     }
+
 }
+
+@media (max-width: 1296px){
+    #main_propiedades #container_filtros .btn_radio {
+        padding: 5% 3%;
+    }
+})
 
 @media (max-width: 1145px) {
     #header_nosotros{
