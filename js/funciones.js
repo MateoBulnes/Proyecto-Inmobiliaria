@@ -131,7 +131,7 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
 
     let tarjeta = document.createElement('div');
 
-    (pagina_actual == 'index.html') ? tarjeta.classList.add('col-sm-12', 'col-md-6', 'col-lg-4') : tarjeta.classList.add('col-sm-10', 'col-md-6', 'col-lg-4');
+    (pagina_actual == 'index') ? tarjeta.classList.add('col-sm-12', 'col-md-6', 'col-lg-4') : tarjeta.classList.add('col-sm-10', 'col-md-6', 'col-lg-4');
 
     tarjeta.innerHTML = `
         <div class="tarjeta_container" data-id="${id_prop}">
