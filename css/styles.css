@@ -341,14 +341,14 @@ main h1 {
 
 
 #btn_enviar_tasacion{
-    background-color: #90AAAC;
+    background-color: #282829;
     transition: 0.3s;
     width: 15%;
     border: none
 }
 
 #btn_enviar_tasacion:hover{
-    background-color: #a7c4c6;
+    background-color: #90AAAC;
 }
 
 
@@ -1127,6 +1127,10 @@ iframe {
     #col_2_emp .fila_emprendimiento {
         margin-left: 1.5%;
     }
+
+    #btn_enviar_tasacion {
+        width: 20%;
+    }
 }
 
 @media (max-width: 1145px) {
@@ -1187,6 +1191,20 @@ iframe {
 
     #icono_wpp {
         right: -45%;
+    }
+}
+
+@media (max-width: 990px){
+    #header_tasaciones{
+        text-align: center;
+    }
+
+    #datos_tasacion{
+        margin-top: 5%;
+    }
+
+    #container_btn_enviar_tasacion{
+        text-align: center !important;
     }
 }
 
