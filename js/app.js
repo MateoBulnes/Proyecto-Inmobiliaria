@@ -7,7 +7,7 @@ window.addEventListener("scroll", () => {
     let logo_base = document.querySelector('#navbar .logo_base');
     let logo_scroll = document.querySelector('#navbar .logo_scroll');
 
-    if (pagina_actual == 'index.html') {
+    if (pagina_actual == 'index') {
         if (window.scrollY > 0) {
             logo_base.style.display = 'none';
             logo_scroll.style.display = '';
