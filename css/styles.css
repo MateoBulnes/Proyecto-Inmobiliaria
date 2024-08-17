@@ -1068,6 +1068,12 @@ iframe {
     }
 }
 
+@media (max-width: 1399px){
+    #main_propiedades #container_filtros .btn_radio {
+        padding: 5% 5%;
+    }
+}
+
 @media (max-width: 1360px){
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 4%;
@@ -1097,7 +1103,7 @@ iframe {
     #main_propiedades #container_filtros .btn_radio {
         padding: 5% 3%;
     }
-})
+}
 
 @media (max-width: 1145px) {
     #header_nosotros{
