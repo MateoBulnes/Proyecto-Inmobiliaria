@@ -1,6 +1,8 @@
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
+console.log('buenas');
+
 document.addEventListener("DOMContentLoaded", async function () {
     mostrar_pantalla_carga();
     switch (pagina_actual) {

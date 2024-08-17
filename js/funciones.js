@@ -1,5 +1,6 @@
 /*LLAMADAS A LA API*/
 const obtener_ultimos_ingresos = async () => {
+    console.log('haciendo la llamada')
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=3&order_by=deleted_at`;
     const resp = await fetch(url);
 
@@ -424,7 +425,7 @@ const cargar_mas_propiedades = async () => {
     cargar_propiedades(propiedades);
     crear_btn_ver_mas();
     cant_prop_cargadas += propiedades.length;
-    if(cant_prop_cargadas == cant_total_prop){document.querySelector('#btn_ver_mas').remove()}
+    if (cant_prop_cargadas == cant_total_prop) { document.querySelector('#btn_ver_mas').remove() }
     ocultar_pantalla_carga();
 }
 
