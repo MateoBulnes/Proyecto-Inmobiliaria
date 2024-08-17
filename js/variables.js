@@ -5,7 +5,7 @@ const options = {
     headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: 'API_KEY'
+        //Authorization: 'API_KEY'
     }
 };
 
