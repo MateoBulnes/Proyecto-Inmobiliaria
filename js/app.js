@@ -4,6 +4,8 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 console.log('buenas');
 
 document.addEventListener("DOMContentLoaded", async function () {
+    console.log('pagina cargada');
+    console.log(pagina_actual);
     mostrar_pantalla_carga();
     switch (pagina_actual) {
         case 'index.html':
