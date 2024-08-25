@@ -393,9 +393,13 @@ footer #container_footer #container_links_footer {
     width: 22%;
 }
 
+footer #container_links_footer hr{
+    width: 100%;
+}
+
 footer #container_footer #container_links_footer #container_lista_links{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     text-align: center;
 }
 
@@ -416,9 +420,13 @@ footer #container_footer #container_contacto_footer ul li img {
 }
 
 footer #container_footer #container_contacto_footer h5,
-footer #container_footer #container_redes_footer h5,
-footer #container_footer #container_links_footer h5{
+footer #container_footer #container_redes_footer h5{
     width: 90%;
+    text-align: center;
+}
+
+footer #container_footer #container_links_footer h5{
+    width: 100%;
     text-align: center;
 }
 
