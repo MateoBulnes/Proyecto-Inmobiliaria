@@ -28,24 +28,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             await obtener_ultimos_ingresos();
 
-            ultimos_ingresos.forEach(prop => {
-                crear_tarjeta_propiedad(prop);
-            });
-
-            var tarjetas_ult_ing = document.querySelectorAll("#cartas_ultimos_ingresos .tarjeta_container");
-
-            tarjetas_ult_ing.forEach(function (tarjeta) {
-                tarjeta.addEventListener("click", function () {
-                    const id_prop = this.getAttribute('data-id');
-                    window.location.href = `/pages/detalle.html?id=${id_prop}`;
-                });
-            });
+            cargar_propiedades(ultimos_ingresos, 'cartas_ultimos_ingresos');
 
             await obtener_emprendimientos();
             crear_filtro('emprendimiento');
 
-            await obtener_localidades();
-            crear_filtro('localidad');
+            /*await obtener_localidades();
+            crear_filtro('localidad');*/
 
             ocultar_pantalla_carga();
 
@@ -59,18 +48,16 @@ document.addEventListener("DOMContentLoaded", async function () {
             await obtener_emprendimientos();
             crear_filtro('emprendimiento', 'propiedades');
 
-            await obtener_localidades();
-            crear_filtro('localidad', 'propiedades');
+            /*await obtener_localidades();
+            crear_filtro('localidad', 'propiedades'); Se harcodean a pedido del cliente*/
+
 
             if (params_busqueda.size <= 0) {
                 await obtener_propiedades();
 
-                propiedades.forEach(p => {
-                    console.log({ 'suite': p.suite_amount, 'room': p.room_amount })
-                })
-
                 document.querySelector('#tag_cant_resultados').innerText = `${cant_total_prop} resultados encontrados`;
-                cargar_propiedades(propiedades);
+
+                cargar_propiedades(propiedades, 'container_propiedades');
                 cant_prop_cargadas = 9;
                 crear_btn_ver_mas();
 

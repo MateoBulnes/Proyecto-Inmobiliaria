@@ -198,7 +198,7 @@ main h1 {
 
 #busqueda_rapida #btn_buscar_rapido {
     background-color: #282829;
-    margin-top: 13.5%;
+    margin-top: 15%;
     transition: 0.3s;
     border: none;
 }
@@ -236,6 +236,7 @@ main h1 {
 
 #ultimos_ingresos #cartas_ultimos_ingresos .row{
     width: 100%;
+    margin-top: 1.2%;
 }
 
 #ultimos_ingresos #cartas_ultimos_ingresos .row .col-lg-4:first-child,

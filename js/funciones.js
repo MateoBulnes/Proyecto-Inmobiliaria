@@ -1,7 +1,6 @@
 /*LLAMADAS A LA API*/
 const obtener_ultimos_ingresos = async () => {
-    console.log('haciendo la llamada')
-    const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=3&order_by=deleted_at`;
+    const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=${limite_ultimos_ingresos}&order_by=deleted_at`;
     const resp = await fetch(url);
 
     const data = await resp.json();
@@ -85,8 +84,6 @@ const obtener_filtros = () => {
 const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio }) => {
     const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": 0,"price_to": ${precio},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
 
-    console.log(data_filtros);
-
     const url = `https://www.tokkobroker.com/api/v1/property/search?&lang=es_ar&format=json&limit=40&data=${data_filtros}&key=${API_KEY}`;
 
     const resp = await fetch(url, options);
@@ -117,7 +114,7 @@ const ocultar_pantalla_carga = () => {
 
 /*CREACION DE ELEMENTOS*/
 
-const crear_tarjeta_propiedad = (propiedad, fila) => {
+const crear_tarjeta_propiedad = (propiedad, fila, container) => {
     let id_prop = propiedad.id;
     let precio = propiedad.operations[0].prices[0].price;
     let moneda = propiedad.operations[0].prices[0].currency;
@@ -155,11 +152,7 @@ const crear_tarjeta_propiedad = (propiedad, fila) => {
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundSize = 'cover';
     tarjeta.querySelector('.tarjeta_imagen').style.backgroundPosition = 'center center';
 
-    if (pagina_actual == 'index') {
-        document.querySelector('#cartas_ultimos_ingresos .row').append(tarjeta);
-    } else {
-        document.querySelector(`#container_propiedades #fila_prop_${fila}`).append(tarjeta);
-    }
+    document.querySelector(`#${container} #fila_prop_${fila}`).append(tarjeta);
 }
 
 
@@ -293,7 +286,6 @@ const cargar_caracteristicas = () => {
     document.querySelector('#ubicacion_caract').innerText = `Ubicación: ${detalle_prop.location.short_location}`;
 }
 
-
 const cargar_servicios = () => {
     const totalServicios = detalle_prop.tags.length;
     const serviciosPorLista = Math.ceil(totalServicios / 3);
@@ -321,7 +313,6 @@ const llenar_detalle_prop = () => {
     cargar_imgs_detalle();
 }
 
-
 const siguiente_img = () => {
     let orden_nueva_img = n_img_detalle_actual + 1;
     if (orden_nueva_img <= detalle_prop.photos.length - 1) {
@@ -347,7 +338,7 @@ const anterior_img = () => {
     }
 }
 
-const cargar_propiedades = (propiedades) => {
+const cargar_propiedades = (propiedades, container) => {
     for (let i = 0; i < propiedades.length; i++) {
         let fila = Math.floor(cant_prop_cargadas + i / 3);
         let div_row = document.getElementById(`fila_prop_${fila}`);
@@ -356,9 +347,9 @@ const cargar_propiedades = (propiedades) => {
             div_row = document.createElement('div');
             div_row.classList.add('row');
             div_row.id = `fila_prop_${fila}`;
-            document.querySelector('#container_propiedades').append(div_row);
+            document.querySelector(`#${container}`).append(div_row);
         }
-        crear_tarjeta_propiedad(propiedades[i], fila);
+        crear_tarjeta_propiedad(propiedades[i], fila, container);
     }
 
     var tarjetas = document.querySelectorAll(".tarjeta_container");
@@ -366,7 +357,7 @@ const cargar_propiedades = (propiedades) => {
     tarjetas.forEach(function (tarjeta) {
         tarjeta.addEventListener("click", function () {
             const id_prop = this.getAttribute('data-id');
-            window.location.href = `detalle.html?id=${id_prop}`;
+            window.location.href = `../pages/detalle.html?id=${id_prop}`;
         });
     });
 }
@@ -384,7 +375,7 @@ const aplicar_filtros = async () => {
 
     if (cant_resultados_busqueda > 0) {
         document.querySelector('.container_sin_resultados').style.display = "none";
-        cargar_propiedades(resultados_busqueda);
+        cargar_propiedades(resultados_busqueda, 'container_propiedades');
     } else {
         document.querySelector('.container_sin_resultados').style.display = "";
     }
@@ -422,7 +413,7 @@ const cargar_mas_propiedades = async () => {
     await obtener_propiedades(cant_prop_cargadas, 9);
 
     document.querySelector('#btn_ver_mas').remove();
-    cargar_propiedades(propiedades);
+    cargar_propiedades(propiedades, 'container_propiedades');
     crear_btn_ver_mas();
     cant_prop_cargadas += propiedades.length;
     if (cant_prop_cargadas == cant_total_prop) { document.querySelector('#btn_ver_mas').remove() }

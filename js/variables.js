@@ -11,6 +11,7 @@ const options = {
 
 
 const id_zona_norte = 147;
+const limite_ultimos_ingresos = 6;
 
 var pagina_actual = document.querySelector('.pagina_actual').value;
 var ultimos_ingresos;
