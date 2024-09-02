@@ -110,30 +110,43 @@
                 </select>
             </div>
 
+
+
             <div id="container_radio_btns" class="col-sm-1">
                 <input type="radio" class="btn-check" name="precio" id="filtro_usd"
                     autocomplete="off" value="USD" checked>
-                <label class="btn btn_radio" for="filtro_usd">Usd</label>
-
-                <input type="radio" class="btn-check" name="precio" id="filtro_pesos"
-                    autocomplete="off" value="ARS">
-                <label class="btn btn_radio" for="filtro_pesos"
-                    id="label_filtro_pesos">Pesos</label>
+                <label class="btn btn-sm btn_radio" for="filtro_usd">USD</label>
             </div>
 
-            <div class="col-sm-1" id="container_filtro_precio">
+            <div id="container_radio_btns" class="col-sm-1">
+                <input type="radio" class="btn-check" name="precio" id="filtro_pesos"
+                    autocomplete="off" value="ARS">
+                <label class="btn btn-sm btn_radio" for="filtro_pesos"
+                    id="label_filtro_pesos">ARS</label>
+            </div>
+
+            <!--<div class="col-sm-1" id="container_filtro_precio">
                 <label for="precio_filtro" class="form-label">Precio Hasta</label>
                 <select class="form-select" aria-label="Seleccione" id="precio_filtro">
                     <option selected>Todos</option>
-                    <option value="100000">$100.000</option>
-                    <option value="300000">$300.000</option>
-                    <option value="500000">$500.000</option>
-                    <option value="750000">$750.000</option>
-                    <option value="1000000">$1.000.000</option>
+                    <option value="100000">100.000</option>
+                    <option value="300000">300.000</option>
+                    <option value="500000">500.000</option>
+                    <option value="750000">750.000</option>
+                    <option value="1000000">1.000.000</option>
                 </select>
+            </div>-->
+
+            <div class="col-sm-1 container_filtro_precio">
+                <label for="filtro_precio_desde" class="form-label">Precio Desde</label>
+                <input type="text" class="form-control" id="filtro_precio_desde" oninput="validarNumero(this)">
+            </div>
+            <div class="col-sm-1 container_filtro_precio">
+                <label for="filtro_precio_hasta" class="form-label">Precio Hasta</label>
+                <input type="text" class="form-control" id="filtro_precio_hasta" oninput="validarNumero(this)">
             </div>
 
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-1">
                 <button class="btn btn-primary" id="btn_aplicar_filtros">APLICAR</button>
             </div>
         </div>
