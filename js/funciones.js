@@ -45,44 +45,53 @@ const obtener_detalle_prop = async (id_prop) => {
 }
 
 const obtener_filtros = () => {
-    let tipo_oper_ing = document.querySelector('#tipo_oper_filtro').value;
-    if (tipo_oper_ing == 'Todas') { tipo_oper_ing = '1,2,3' };
+    let tipo_oper = document.querySelector('#tipo_oper_filtro').value;
+    if (tipo_oper == 'Todas') { tipo_oper = '1,2,3' };
 
-    let tipo_prop_ing = document.querySelector('#tipo_prop_filtro').value;
-    if (tipo_prop_ing == 'Todas') { tipo_prop_ing = '1,2,3,5,7,13' };
+    let tipo_prop = document.querySelector('#tipo_prop_filtro').value;
+    if (tipo_prop == 'Todas') { tipo_prop = '1,2,3,5,7,13' };
 
-    let localidad_ing = document.querySelector('#localidad_filtro').value;
-    if (localidad_ing == 'Todas') { localidad_ing = localidades.map(localidad => localidad.id).join(',') }
+    let localidad = document.querySelector('#localidad_filtro').value;
+    //if (localidad == 'Todas') { localidad = localidades.map(loc => loc.id).join(',') }
+    if (localidad == 'Todas') { localidad = todas_localidades }
 
-    let precio_ing = document.querySelector('#precio_filtro').value;
-    if (precio_ing == 'Todos') { precio_ing = '5000000' };
+    let precio_desde = document.querySelector('#filtro_precio_desde').value.trim();
+    precio_desde = limpiar_formato_precio(precio_desde);
+    let precio_hasta = document.querySelector('#filtro_precio_hasta').value.trim();
+    precio_hasta = limpiar_formato_precio(precio_hasta);
+    console.log(precio_desde);
+    console.log(precio_hasta);
+    if(!precio_desde) {precio_desde = '0'}
+    if(!precio_hasta) {precio_hasta = MAX_PRECIO}
 
-    let emprendimiento_ing = document.querySelector('#emprendimiento_filtro').value;
-    if (emprendimiento_ing == 'Todos') {
-        emprendimiento_ing = ''
+
+    let emprendimiento = document.querySelector('#emprendimiento_filtro').value;
+    if (emprendimiento == 'Todos') {
+        emprendimiento = ''
     } else {
-        emprendimiento_ing = `["development__id","op","${emprendimiento_ing}"]`;
+        emprendimiento = `["development__id","op","${emprendimiento}"]`;
     };
 
-    let moneda_ing;
+    let moneda;
     document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
         if (b.checked) {
-            moneda_ing = b.value;
+            moneda = b.value;
         }
     });
 
     return {
-        tipo_oper: tipo_oper_ing,
-        tipo_prop: tipo_prop_ing,
-        localidad: localidad_ing,
-        emprendimiento: emprendimiento_ing,
-        moneda: moneda_ing,
-        precio: precio_ing
+        tipo_oper,
+        tipo_prop,
+        localidad,
+        emprendimiento,
+        moneda,
+        precio_desde,
+        precio_hasta
     }
 }
 
-const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio }) => {
-    const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": 0,"price_to": ${precio},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
+const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio_desde, precio_hasta }) => {
+    const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": ${precio_desde},"price_to": ${precio_hasta},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
 
     const url = `https://www.tokkobroker.com/api/v1/property/search?&lang=es_ar&format=json&limit=40&data=${data_filtros}&key=${API_KEY}`;
 
@@ -422,6 +431,24 @@ const cargar_mas_propiedades = async () => {
 
 const validarNumero = (input) =>{
     input.value = input.value.replace(/[^0-9]/g, '');
+}
+
+const formatear_precio = (event) => {
+    const input = event.target;
+    // Obtener el valor del campo de entrada y eliminar cualquier carácter no numérico
+    let value = input.value.replace(/[^0-9]/g, '');
+    
+    // Formatear el número con puntos como separadores de miles
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    
+    // Establecer el valor formateado en el campo de entrada
+    input.value = value;
+};
+
+const limpiar_formato_precio = (precio) => {
+    const precio_limpio = precio.replace(/\./g, '');
+
+    return precio_limpio;
 }
 
 

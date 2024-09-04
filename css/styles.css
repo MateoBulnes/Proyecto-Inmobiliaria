@@ -742,6 +742,15 @@ footer #disclaimer_footer span{
     width: 3.5%;
 }
 
+#main_propiedades .input_precio{
+    text-align: center;
+}
+
+#main_propiedades .label_precio{
+    width: 100%;
+    text-align: center;
+}
+
 #main_propiedades #container_sidebar_filtros .form-check .form-check-input:hover,
 #main_propiedades #container_sidebar_filtros .form-check .form-check-label:hover {
     cursor: pointer;

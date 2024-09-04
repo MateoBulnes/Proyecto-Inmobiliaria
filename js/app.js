@@ -45,6 +45,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             document.querySelector('#btn_aplicar_filtros').addEventListener('click', aplicar_filtros);
 
+            const inputs_precio = document.querySelectorAll('.input_precio');
+
+            inputs_precio.forEach((input) => {
+                input.addEventListener('input', formatear_precio);
+            });
+
+            /*input.addEventListener('input', () => {
+                // Obtener el valor del campo de entrada y eliminar cualquier carácter no numérico
+                let value = input.value.replace(/[^0-9]/g, '');
+
+                // Formatear el número con puntos como separadores de miles
+                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+                // Establecer el valor formateado en el campo de entrada
+                input.value = value;
+            });*/
+
             await obtener_emprendimientos();
             crear_filtro('emprendimiento', 'propiedades');
 

@@ -12,6 +12,8 @@ const options = {
 
 const id_zona_norte = 147;
 const limite_ultimos_ingresos = 6;
+const todas_localidades = "24820,256038,24759,25620,25127,25852"
+const MAX_PRECIO = '50000000'
 
 var pagina_actual = document.querySelector('.pagina_actual').value;
 var ultimos_ingresos;
