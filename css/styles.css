@@ -134,7 +134,8 @@ main {
 }
 
 #navbar #img_logo_navbar img {
-    width: 15%;
+    width: 30%;
+    margin: 2% 0 3% 4%;
 }
 
 #navbar #img_logo_navbar .logo_scroll,
