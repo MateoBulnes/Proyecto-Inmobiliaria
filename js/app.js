@@ -51,22 +51,14 @@ document.addEventListener("DOMContentLoaded", async function () {
                 input.addEventListener('input', formatear_precio);
             });
 
-            /*input.addEventListener('input', () => {
-                // Obtener el valor del campo de entrada y eliminar cualquier carácter no numérico
-                let value = input.value.replace(/[^0-9]/g, '');
+            await obtener_localidades_cf();
 
-                // Formatear el número con puntos como separadores de miles
-                value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-                // Establecer el valor formateado en el campo de entrada
-                input.value = value;
-            });*/
+            const ids = localidades_cf.map(l => l.id).join(',');
+            let opcion_cf = document.querySelector('#opcion_cf');
+            opcion_cf.value = ids;
 
             await obtener_emprendimientos();
             crear_filtro('emprendimiento', 'propiedades');
-
-            /*await obtener_localidades();
-            crear_filtro('localidad', 'propiedades'); Se harcodean a pedido del cliente*/
 
 
             if (params_busqueda.size <= 0) {

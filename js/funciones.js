@@ -8,6 +8,14 @@ const obtener_ultimos_ingresos = async () => {
     ultimos_ingresos = data.objects;
 }
 
+const obtener_localidades_cf = async () => {
+    const url = `https://www.tokkobroker.com/api/v1/state/${id_capital_federal}/?lang=es_ar&format=json&key=${API_KEY}`;
+    const resp = await fetch(url);
+
+    const data = await resp.json();
+    localidades_cf = data.divisions;
+}
+
 const obtener_propiedades = async (offset = 0, limite = 9) => {
     const url = `https://www.tokkobroker.com/api/v1/property/?key=${API_KEY}&lang=es_ar&format=json&limit=${limite}&order_by=deleted_at&offset=${offset}`;
     const resp = await fetch(url);
@@ -44,62 +52,21 @@ const obtener_detalle_prop = async (id_prop) => {
     detalle_prop = data;
 }
 
-const obtener_filtros = () => {
-    let tipo_oper = document.querySelector('#tipo_oper_filtro').value;
-    if (tipo_oper == 'Todas') { tipo_oper = '1,2,3' };
-
-    let tipo_prop = document.querySelector('#tipo_prop_filtro').value;
-    if (tipo_prop == 'Todas') { tipo_prop = '1,2,3,5,7,13' };
-
-    let localidad = document.querySelector('#localidad_filtro').value;
-    //if (localidad == 'Todas') { localidad = localidades.map(loc => loc.id).join(',') }
-    if (localidad == 'Todas') { localidad = todas_localidades }
-
-    let precio_desde = document.querySelector('#filtro_precio_desde').value.trim();
-    precio_desde = limpiar_formato_precio(precio_desde);
-    let precio_hasta = document.querySelector('#filtro_precio_hasta').value.trim();
-    precio_hasta = limpiar_formato_precio(precio_hasta);
-    console.log(precio_desde);
-    console.log(precio_hasta);
-    if(!precio_desde) {precio_desde = '0'}
-    if(!precio_hasta) {precio_hasta = MAX_PRECIO}
-
-
-    let emprendimiento = document.querySelector('#emprendimiento_filtro').value;
-    if (emprendimiento == 'Todos') {
-        emprendimiento = ''
-    } else {
-        emprendimiento = `["development__id","op","${emprendimiento}"]`;
-    };
-
-    let moneda;
-    document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
-        if (b.checked) {
-            moneda = b.value;
-        }
-    });
-
-    return {
-        tipo_oper,
-        tipo_prop,
-        localidad,
-        emprendimiento,
-        moneda,
-        precio_desde,
-        precio_hasta
-    }
-}
-
-const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio_desde, precio_hasta }) => {
+const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio_desde, precio_hasta, localidad_por_nombre}) => {
     const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": ${precio_desde},"price_to": ${precio_hasta},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
-
+    
     const url = `https://www.tokkobroker.com/api/v1/property/search?&lang=es_ar&format=json&limit=40&data=${data_filtros}&key=${API_KEY}`;
 
     const resp = await fetch(url, options);
-
     const data = await resp.json();
+
     resultados_busqueda = data.objects;
     cant_resultados_busqueda = data.meta.total_count;
+
+    if(localidad_por_nombre){
+        resultados_busqueda = resultados_busqueda.filter(prop => prop.location.full_location.toUpperCase().includes(localidad_por_nombre.toUpperCase()));
+        cant_resultados_busqueda = resultados_busqueda.length;
+    }
 }
 
 
@@ -231,7 +198,6 @@ const crear_emprendimientos = () => {
     let n_emp_actual = 0;
 
     emprendimientos.forEach(emp => {
-        console.log(emp.tags)
         let columna;
         if (n_emp_actual % 2 == 0) {
             columna = document.querySelector('#col_1_emp');
@@ -371,6 +337,57 @@ const cargar_propiedades = (propiedades, container) => {
     });
 }
 
+const definir_busqueda_localidad = (localidad_seleccionada) => {
+    return localidades_fuera_tokko.find(loc => loc.toUpperCase() == localidad_seleccionada.toUpperCase());
+};
+
+const obtener_filtros = () => {
+    let tipo_oper = document.querySelector('#tipo_oper_filtro').value;
+    if (tipo_oper == 'Todas') { tipo_oper = '1,2,3' };
+
+    let tipo_prop = document.querySelector('#tipo_prop_filtro').value;
+    if (tipo_prop == 'Todas') { tipo_prop = '1,2,3,5,7,13' };
+
+    let localidad = document.querySelector('#localidad_filtro').value;
+    let texto_localidad = document.querySelector('#localidad_filtro');
+    //if (localidad == 'Todas') { localidad = localidades.map(loc => loc.id).join(',') }
+    if (localidad == 'Todas') { localidad = todas_localidades }
+    let localidad_por_nombre = definir_busqueda_localidad(texto_localidad.options[texto_localidad.selectedIndex].text);
+
+    let precio_desde = document.querySelector('#filtro_precio_desde').value.trim();
+    precio_desde = limpiar_formato_precio(precio_desde);
+    let precio_hasta = document.querySelector('#filtro_precio_hasta').value.trim();
+    precio_hasta = limpiar_formato_precio(precio_hasta);
+    if(!precio_desde) {precio_desde = '0'}
+    if(!precio_hasta) {precio_hasta = MAX_PRECIO}
+
+
+    let emprendimiento = document.querySelector('#emprendimiento_filtro').value;
+    if (emprendimiento == 'Todos') {
+        emprendimiento = ''
+    } else {
+        emprendimiento = `["development__id","op","${emprendimiento}"]`;
+    };
+
+    let moneda;
+    document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
+        if (b.checked) {
+            moneda = b.value;
+        }
+    });
+
+    return {
+        tipo_oper,
+        tipo_prop,
+        localidad,
+        emprendimiento,
+        moneda,
+        precio_desde,
+        precio_hasta,
+        localidad_por_nombre
+    }
+}
+
 const aplicar_filtros = async () => {
     mostrar_pantalla_carga();
 
@@ -396,8 +413,11 @@ const redireccionar_pagina = (pagina) => {
     const tipo_prop = document.querySelector('#tipo_prop_busqueda').value;
     const localidad = document.querySelector('#localidad_busqueda').value;
     const emprendimiento = document.querySelector('#emprendimiento_busqueda').value;
+    let texto_localidad = document.querySelector('#localidad_busqueda');
+    
+    const localidad_nombre = texto_localidad.options[texto_localidad.selectedIndex].text
 
-    const url = `/pages/${pagina}.html?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}`;
+    const url = `/pages/${pagina}.html?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}&loc_nombre=${encodeURIComponent(localidad_nombre)}`;
 
     window.location.href = url;
 }
@@ -405,9 +425,22 @@ const redireccionar_pagina = (pagina) => {
 const cargar_filtros_busqueda = () => {
     const params = new URLSearchParams(window.location.search);
 
+    let localidad_nombre = params.get('loc_nombre');
+    if(localidad_nombre){
+        let selector_loc = document.querySelector('#localidad_filtro');
+
+        for (let i = 0; i < selector_loc.options.length; i++) {
+            if (selector_loc.options[i].text.toUpperCase() == localidad_nombre.toUpperCase()) {
+              selector_loc.selectedIndex = i;
+              break;
+            }
+          }
+    } else{
+        document.querySelector('#localidad_filtro').value = params.get('localidad');
+    }
+
     document.querySelector('#tipo_oper_filtro').value = params.get('tipo_oper');
     document.querySelector('#tipo_prop_filtro').value = params.get('tipo_prop');
-    document.querySelector('#localidad_filtro').value = params.get('localidad');
     document.querySelector('#emprendimiento_filtro').value = params.get('emprendimiento');
 
     document.querySelector('#btn_aplicar_filtros').click();
