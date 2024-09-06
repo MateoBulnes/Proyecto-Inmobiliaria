@@ -601,9 +601,15 @@ footer #disclaimer_footer span{
     margin-top: 5.5%;
     padding: 2%;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../media/img_header_contacto.jpg');
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
+    background-size: cover;
     color: #FFFFFF;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
 }
 
 #main_contacto {
@@ -988,9 +994,15 @@ iframe {
     margin-top: 5.5%;
     padding: 2%;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../media/img_emprendimientos.jpg');
-    background-size: cover;
+    background-size: auto;
     background-position: center center;
+    background-size: cover;
     color: #FFFFFF;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
 }
 
 #main_emprendimientos{
