@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const params_busqueda = new URLSearchParams(window.location.search);
 
             document.querySelector('#btn_aplicar_filtros').addEventListener('click', aplicar_filtros);
+            document.querySelector('#btn_limpiar_filtros').addEventListener('click', limpiar_filtros);
 
             const inputs_precio = document.querySelectorAll('.input_precio');
 

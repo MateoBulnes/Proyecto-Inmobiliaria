@@ -733,6 +733,14 @@ footer #disclaimer_footer span{
     width: 13%;
 }
 
+#container_filtro_localidad{
+    width: 14%;
+}
+
+#container_filtro_tipo_oper{
+    width: 14%;
+}
+
 .container_filtro_precio{
     width: 10%;
 }
@@ -767,14 +775,21 @@ footer #disclaimer_footer span{
     background-color: #90AAAC;
 }
 
+#main_propiedades #container_filtros #container_botones_filtros{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2.2%;
+    padding-left: 0;
+    width: 12%;
+}
+
 #main_propiedades #container_filtros #btn_aplicar_filtros {
     background-color: #282829;
-    width: 100%;
     font-weight: 500;
     border: none;
     transition: 0.3s;
-    margin-top: 33%;
-    padding: 8% 4%;
+    padding: 4.5% 10%;
 }
 
 #main_propiedades #container_filtros #btn_aplicar_filtros:hover {

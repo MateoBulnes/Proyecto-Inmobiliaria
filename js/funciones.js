@@ -52,9 +52,9 @@ const obtener_detalle_prop = async (id_prop) => {
     detalle_prop = data;
 }
 
-const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio_desde, precio_hasta, localidad_por_nombre}) => {
+const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimiento, moneda, precio_desde, precio_hasta, localidad_por_nombre }) => {
     const data_filtros = `{"current_localization_id": [${localidad}],"current_localization_type": "division","price_from": ${precio_desde},"price_to": ${precio_hasta},"operation_types": [${tipo_oper}],"property_types": [${tipo_prop}],"currency": "${moneda}","filters":[${emprendimiento}]}`;
-    
+
     const url = `https://www.tokkobroker.com/api/v1/property/search?&lang=es_ar&format=json&limit=40&data=${data_filtros}&key=${API_KEY}`;
 
     const resp = await fetch(url, options);
@@ -63,7 +63,7 @@ const filtrar_propiedades = async ({ tipo_oper, tipo_prop, localidad, emprendimi
     resultados_busqueda = data.objects;
     cant_resultados_busqueda = data.meta.total_count;
 
-    if(localidad_por_nombre){
+    if (localidad_por_nombre) {
         resultados_busqueda = resultados_busqueda.filter(prop => prop.location.full_location.toUpperCase().includes(localidad_por_nombre.toUpperCase()));
         cant_resultados_busqueda = resultados_busqueda.length;
     }
@@ -358,8 +358,8 @@ const obtener_filtros = () => {
     precio_desde = limpiar_formato_precio(precio_desde);
     let precio_hasta = document.querySelector('#filtro_precio_hasta').value.trim();
     precio_hasta = limpiar_formato_precio(precio_hasta);
-    if(!precio_desde) {precio_desde = '0'}
-    if(!precio_hasta) {precio_hasta = MAX_PRECIO}
+    if (!precio_desde) { precio_desde = '0' }
+    if (!precio_hasta) { precio_hasta = MAX_PRECIO }
 
 
     let emprendimiento = document.querySelector('#emprendimiento_filtro').value;
@@ -388,6 +388,32 @@ const obtener_filtros = () => {
     }
 }
 
+const guardar_filtros = () => {
+    let tipo_oper = document.querySelector('#tipo_oper_filtro').value;
+    let tipo_prop = document.querySelector('#tipo_prop_filtro').value;
+    let localidad = document.querySelector('#localidad_filtro').value;
+    let texto_localidad = document.querySelector('#localidad_filtro');
+    let localidad_por_nombre = definir_busqueda_localidad(texto_localidad.options[texto_localidad.selectedIndex].text);
+    let precio_desde = document.querySelector('#filtro_precio_desde').value.trim();
+    precio_desde = limpiar_formato_precio(precio_desde);
+    let precio_hasta = document.querySelector('#filtro_precio_hasta').value.trim();
+    precio_hasta = limpiar_formato_precio(precio_hasta);
+    let emprendimiento = document.querySelector('#emprendimiento_filtro').value;
+
+    let moneda;
+    document.querySelectorAll('#main_propiedades #container_filtros .btn-check').forEach(b => {
+        if (b.checked) {
+            moneda = b.value;
+        }
+    });
+
+    let url = `${window.location.pathname}?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}`;
+    precio_desde && (nueva_url += `&precio_desde=${encodeURIComponent(precio_desde)}`);
+    precio_hasta && (nueva_url += `&precio_hasta=${encodeURIComponent(precio_hasta)}`);
+    localidad_por_nombre && (nueva_url += `&loc_nombre=${encodeURIComponent(localidad_por_nombre)}`);
+    window.history.replaceState({}, '', url);
+}
+
 const aplicar_filtros = async () => {
     mostrar_pantalla_carga();
 
@@ -402,10 +428,22 @@ const aplicar_filtros = async () => {
     if (cant_resultados_busqueda > 0) {
         document.querySelector('.container_sin_resultados').style.display = "none";
         cargar_propiedades(resultados_busqueda, 'container_propiedades');
+        guardar_filtros();
     } else {
         document.querySelector('.container_sin_resultados').style.display = "";
     }
     ocultar_pantalla_carga();
+}
+
+const limpiar_filtros = () => {
+    document.querySelector('#tipo_prop_filtro').selectedIndex = 0;
+    document.querySelector('#tipo_oper_filtro').selectedIndex = 0;
+    document.querySelector('#localidad_filtro').selectedIndex = 0;
+    document.querySelector('#emprendimiento_filtro').selectedIndex = 0;
+    document.querySelector('#filtro_precio_desde').value = null;
+    document.querySelector('#filtro_precio_hasta').value = null;
+    window.history.replaceState({}, '', window.location.pathname);
+    window.location.reload();
 }
 
 const redireccionar_pagina = (pagina) => {
@@ -414,7 +452,7 @@ const redireccionar_pagina = (pagina) => {
     const localidad = document.querySelector('#localidad_busqueda').value;
     const emprendimiento = document.querySelector('#emprendimiento_busqueda').value;
     let texto_localidad = document.querySelector('#localidad_busqueda');
-    
+
     const localidad_nombre = texto_localidad.options[texto_localidad.selectedIndex].text
 
     const url = `/pages/${pagina}.html?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}&loc_nombre=${encodeURIComponent(localidad_nombre)}`;
@@ -426,16 +464,16 @@ const cargar_filtros_busqueda = () => {
     const params = new URLSearchParams(window.location.search);
 
     let localidad_nombre = params.get('loc_nombre');
-    if(localidad_nombre){
+    if (localidad_nombre) {
         let selector_loc = document.querySelector('#localidad_filtro');
 
         for (let i = 0; i < selector_loc.options.length; i++) {
             if (selector_loc.options[i].text.toUpperCase() == localidad_nombre.toUpperCase()) {
-              selector_loc.selectedIndex = i;
-              break;
+                selector_loc.selectedIndex = i;
+                break;
             }
-          }
-    } else{
+        }
+    } else {
         document.querySelector('#localidad_filtro').value = params.get('localidad');
     }
 
@@ -462,7 +500,7 @@ const cargar_mas_propiedades = async () => {
     ocultar_pantalla_carga();
 }
 
-const validarNumero = (input) =>{
+const validarNumero = (input) => {
     input.value = input.value.replace(/[^0-9]/g, '');
 }
 
@@ -470,10 +508,10 @@ const formatear_precio = (event) => {
     const input = event.target;
     // Obtener el valor del campo de entrada y eliminar cualquier carácter no numérico
     let value = input.value.replace(/[^0-9]/g, '');
-    
+
     // Formatear el número con puntos como separadores de miles
     value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    
+
     // Establecer el valor formateado en el campo de entrada
     input.value = value;
 };
