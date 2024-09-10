@@ -408,8 +408,8 @@ const guardar_filtros = () => {
     });
 
     let url = `${window.location.pathname}?tipo_oper=${encodeURIComponent(tipo_oper)}&tipo_prop=${encodeURIComponent(tipo_prop)}&localidad=${encodeURIComponent(localidad)}&emprendimiento=${encodeURIComponent(emprendimiento)}`;
-    precio_desde && (nueva_url += `&precio_desde=${encodeURIComponent(precio_desde)}`);
-    precio_hasta && (nueva_url += `&precio_hasta=${encodeURIComponent(precio_hasta)}`);
+    precio_desde && (url += `&precio_desde=${encodeURIComponent(precio_desde)}`);
+    precio_hasta && (url += `&precio_hasta=${encodeURIComponent(precio_hasta)}`);
     localidad_por_nombre && (nueva_url += `&loc_nombre=${encodeURIComponent(localidad_por_nombre)}`);
     window.history.replaceState({}, '', url);
 }
@@ -480,6 +480,8 @@ const cargar_filtros_busqueda = () => {
     document.querySelector('#tipo_oper_filtro').value = params.get('tipo_oper');
     document.querySelector('#tipo_prop_filtro').value = params.get('tipo_prop');
     document.querySelector('#emprendimiento_filtro').value = params.get('emprendimiento');
+    document.querySelector('#filtro_precio_desde').value = params.get('precio_desde');
+    document.querySelector('#filtro_precio_hasta').value = params.get('precio_hasta');
 
     document.querySelector('#btn_aplicar_filtros').click();
 }
