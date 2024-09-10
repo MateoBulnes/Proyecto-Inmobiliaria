@@ -270,7 +270,7 @@ main h1 {
 }
 
 .tarjeta_info {
-    padding: 1% 0 0 2%;
+    padding: 2% 0 0 2%;
 }
 
 .tarjeta_info h4 {
@@ -339,7 +339,7 @@ main h1 {
 
 /*FOOTER*/
 footer {
-    height: 36vh;
+    height: 55vh;
     width: 100%;
     background-color: #282829;
     margin-top: 5%;
@@ -350,10 +350,9 @@ footer #container_footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     color: #FFFFFF;
-    padding-top: 2%;
-    margin-bottom: 1%;
+    padding: 5%;
 }
 
 footer #container_footer #container_logo_footer {
@@ -363,49 +362,64 @@ footer #container_footer #container_logo_footer {
 }
 
 footer #container_footer #container_contacto_footer {
-    width: 25%;
-    margin-left: 1%;
+    width: 100%;
 }
 
 footer #container_footer #container_links_footer {
-    width: 22%;
-}
-
-footer #container_links_footer hr{
-    width: 100%;
+    width: 15%;
 }
 
 footer #container_footer #container_links_footer #container_lista_links{
     display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+footer #container_footer #container_links_footer #container_lista_links li{
+    margin-bottom: 3%;
 }
 
 footer #container_footer #container_redes_footer {
-    width: 12%;
+    width: 100%;
+    margin-top: 2%;
+}
+
+footer #container_footer #container_contacto_footer ul,
+footer #container_footer #container_links_footer ul,
+footer #container_footer #container_redes_footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 footer #container_footer #container_redes_footer ul{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    width: 40%;
+    margin-top: 4%;
 }
 
 /*footer contactos*/
 footer #container_footer #container_contacto_footer ul li img {
-    width: 10%;
+    width: 8%;
 
 }
 
 footer #container_footer #container_contacto_footer h5,
 footer #container_footer #container_redes_footer h5{
-    width: 90%;
-    text-align: center;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    color: #90AAAC;
 }
 
 footer #container_footer #container_links_footer h5{
     width: 100%;
-    text-align: center;
+    text-align: left;
+    font-weight: bold;
+    color: #90AAAC;
+    margin-bottom: 5%;
 }
 
 
@@ -423,6 +437,11 @@ footer .btn_footer {
     transition: 0.3s;
 }
 
+footer .btn_footer a{
+    text-decoration: none;
+    color: inherit;
+}
+
 footer .btn_footer:hover {
     color: #FFFFFF;
 }
@@ -433,20 +452,13 @@ footer #container_contacto_footer .container_btn_footer {
     justify-content: start;
     align-items: center;
     font-weight: 500;
-    margin-left: 5%;
 }
 
 footer #container_contacto_footer .container_btn_footer span {
-    margin-left: 5%;
+    margin-left: 3%;
+    font-size: 15px;
 }
 
-footer #container_footer #container_contacto_footer ul,
-footer #container_footer #container_links_footer ul,
-footer #container_footer #container_redes_footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
 
 /*footer links*/
 footer #container_footer #container_links_footer ul a {
@@ -464,12 +476,12 @@ footer hr {
 }
 
 footer #logo_footer {
-    width: 70%;
+    width: 100%;
 }
 
 /*footer redes*/
 footer .icono_redes {
-    width: 65%;
+    width: 70%;
 }
 
 footer .icono_redes:hover {
@@ -867,6 +879,10 @@ footer #disclaimer_footer span{
 
 #main_detalle{
     margin-top: 6.5%;
+}
+
+.contenido_info:has(ul) {
+    padding: 0;
 }
 
 .icono_detalle{
