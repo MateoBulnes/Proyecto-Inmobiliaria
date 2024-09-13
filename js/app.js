@@ -119,3 +119,6 @@ document.querySelector('#btn_mail_footer').addEventListener('click', function ()
         console.error('Error al copiar el texto: ', error);
     });
 })
+
+window.addEventListener('load', cambiarLogo);
+window.addEventListener('resize', cambiarLogo);

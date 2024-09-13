@@ -6,6 +6,10 @@
     margin: 0;
 }
 
+.navbar-toggler {
+    border: none;
+}
+
 .cargador{
     position: fixed;
     width: 100vw;
@@ -1457,6 +1461,83 @@ iframe {
     }
     .fila_emprendimiento {
         height: 70vh;
+    }
+}
+
+@media (max-width: 376px) {
+    *{
+        overflow-x: hidden;
+    }
+    /*INDEX*/
+    main h1 {
+        left: 15%;
+        top: 20%;
+        font-size: 20px;
+        width: 70%;
+    }
+
+    #navbar #img_logo_navbar img{
+        width: 50%;
+        margin-left: 0;
+        margin-top: 5%;
+    }
+
+    #busqueda_rapida {
+        left: 0;
+        top: 25%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #busqueda_rapida select{
+       width: 100%;
+    }
+
+    #busqueda_rapida label {
+        margin-bottom: 0;
+    }
+
+    #busqueda_rapida .container_filtro_select {
+        width: 80%;
+        margin-bottom: 3%;
+    }
+
+    #busqueda_rapida > :last-child {
+        text-align: center;
+    }
+
+    #busqueda_rapida #btn_buscar_rapido {
+        margin-top: 0;
+        width: 25%;
+        margin-top: 5%;
+    }
+
+    /*FOOTER*/
+    #container_logo_footer{
+        width: 80%;
+    }
+
+    footer #container_footer #container_links_footer h5,
+    footer #container_footer #container_links_footer #container_lista_links,
+    footer #container_footer #container_contacto_footer h5,
+    footer #container_footer #container_redes_footer h5{
+        text-align: center;
+    }
+
+    footer #container_footer #container_contacto_footer ul li img {
+        width: 12%;
+    }
+
+    footer #container_contacto_footer .container_btn_footer span{
+        font-size: 10px;
+    }
+
+    footer .icono_redes{
+        width: 60%;
+    }
+
+    footer #disclaimer_footer span{
+        text-align: center;
     }
 }
 

@@ -524,5 +524,17 @@ const limpiar_formato_precio = (precio) => {
     return precio_limpio;
 }
 
+function cambiarLogo() {
+    const logo_base = document.querySelector('.logo_base');
+    const logo_scroll = document.querySelector('.logo_scroll');
+    if (window.matchMedia("(max-width: 376px)").matches) {
+      logo_base.src = "/media/Logo-PGP-08.png";
+      logo_scroll.src = "/media/Logo-PGP-08.png";
+    } else {
+      logo_base.src = "/media/Logo_horizontal.png";
+      logo_scroll.src = "/media/Logo_horizontal.png";
+    }
+  }
+
 
 
