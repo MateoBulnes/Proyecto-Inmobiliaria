@@ -1468,6 +1468,26 @@ iframe {
     *{
         overflow-x: hidden;
     }
+
+    #navbar {
+        background-color: #282829;
+        box-shadow: -1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+    }
+
+    .fondo_navbar #lista_navbar a {
+        color: #FFFFFF;
+        transform: translateY(0px);
+        transition: 0.6s;
+    }
+
+    .fondo_navbar .logo_scroll, .fondo_navbar .logo_base {
+        transform: translateY(0px);
+    }
+
+    #navbar_paginas ul {
+        text-align: center;
+    }
+
     /*INDEX*/
     main h1 {
         left: 15%;
@@ -1515,6 +1535,10 @@ iframe {
     /*FOOTER*/
     #container_logo_footer{
         width: 80%;
+    }
+
+    footer #container_footer #container_logo_footer {
+        width: 60%;
     }
 
     footer #container_footer #container_links_footer h5,
