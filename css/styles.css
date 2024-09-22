@@ -1641,6 +1641,54 @@ iframe {
         font-size: 12px;
     }
 
+    /*PROPIEDADES*/
+    #main_propiedades #container_filtros{
+        margin-top: 23%;
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    #container_filtro_tipo_oper, 
+    #container_filtro_tipo_prop,
+    #container_filtro_localidad,
+    .container_filtro_precio,
+    #main_propiedades #container_filtros #container_botones_filtros{
+        width: 100%;
+    }
+
+    #main_propiedades #container_filtros #container_radio_btns{
+       display: none;
+    }
+
+    #main_propiedades .label_precio{
+        text-align: left;
+    }
+
+    #main_propiedades #container_filtros #container_botones_filtros{
+        justify-content: end;
+        gap: 10px;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    #main_propiedades #container_filtros #btn_aplicar_filtros{
+        padding: 2% 8%;
+    }
+
+    #tag_cant_resultados {
+        margin-left: 0;
+        padding-left: 9%;
+        position: relative;
+    }
+
+    #main_propiedades #container_propiedades {
+        margin-top: 0;
+    }
+
+    #btn_ver_mas{
+        margin: 3% 0 0 38%;
+    }
+
     /*FOOTER*/
     #container_logo_footer{
         width: 80%;
