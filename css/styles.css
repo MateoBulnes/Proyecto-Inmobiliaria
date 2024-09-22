@@ -599,6 +599,7 @@ footer #disclaimer_footer span{
     width: 70%;
     padding: 2%;
     margin: 1%;
+    border-radius: 10px;
 }
 
 #seccion_valores .card_valores h2 {
@@ -1530,6 +1531,114 @@ iframe {
         margin-top: 0;
         width: 25%;
         margin-top: 5%;
+    }
+
+    /*NOSOTROS*/
+    #header_nosotros,
+    #header_emprendimientos,
+    #header_tasaciones,
+    #header_contacto{
+        margin-top: 23%;
+        padding-top: 7%;
+        text-align: left;
+    }
+
+    #header_nosotros #container_header_nosotros, 
+    #header_nosotros #container_header_nosotros p{
+        text-align: left;
+    }
+
+    #header_nosotros #container_header_nosotros h3 {
+        margin-bottom: 5%;
+    }
+
+    #header_nosotros .video_container {
+        width: 80%;
+        height: 30vh;
+        overflow-y: hidden;
+        margin-bottom: 5%;
+    }
+
+    #seccion_valores .card_valores {
+        text-align: left;
+        padding: 6%;
+        margin-top: 6%;
+    }
+
+    #seccion_valores .card_valores p{
+        font-size: 14px;
+    }
+
+    #seccion_valores {
+        margin-bottom: 30%;
+    }
+
+    /*EMPRENDIMIENTOS*/
+    .info_emprendimiento {
+        padding: 6%;
+    }
+    .info_emprendimiento p {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .fila_emprendimiento{
+        height: auto;
+    }
+
+    /*CONTACTO*/
+    #main_contacto{
+        flex-direction: column;
+    }
+
+    #main_contacto #container_contacto{
+        width: 90%;
+        padding: 7%;
+        margin-bottom: 10%;
+    }
+
+    #main_contacto #container_contacto h2{
+        text-align: left;
+        font-size: 25px;
+    }
+
+    .form-label{
+        margin-top: 4%;
+    }
+
+    #main_contacto #btn_enviar_contacto{
+        width: 40%;
+    }
+
+    #container_contacto .col-sm-12 {
+        margin-top: 2%;
+    }
+
+    #main_contacto #container_img_contacto {
+        width: 90%;
+        padding: 4%;
+        margin-bottom: 25%;
+    }
+
+    #main_contacto #container_medios_contacto h3{
+        text-align: left;
+    }
+
+    #main_contacto #container_medios_contacto h3{
+        font-size: 25px;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto a{
+        flex-direction: row;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto .icono_contacto {
+        width: 15%;
+        margin: 0;
+    }
+
+    #main_contacto #container_medios_contacto .medio_contacto h5{
+        font-size: 12px;
     }
 
     /*FOOTER*/

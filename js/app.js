@@ -22,6 +22,9 @@ window.addEventListener("scroll", () => {
 
 document.addEventListener("DOMContentLoaded", async function () {
     mostrar_pantalla_carga();
+    window.addEventListener('load', cambiarLogo);
+    window.addEventListener('resize', cambiarLogo);
+    
     switch (pagina_actual) {
         case 'index':
             document.querySelector('#btn_buscar_rapido').addEventListener('click', buscar);
@@ -119,6 +122,3 @@ document.querySelector('#btn_mail_footer').addEventListener('click', function ()
         console.error('Error al copiar el texto: ', error);
     });
 })
-
-window.addEventListener('load', cambiarLogo);
-window.addEventListener('resize', cambiarLogo);
