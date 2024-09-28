@@ -1324,16 +1324,55 @@ iframe {
 
     /*detalle*/
     .contenido_info p{
-        text-align: center;
+        text-align: left;
     }
 
     .container_info_prop h4{
-        text-align: center;
+        text-align: left;
+    }
+
+    .container_info_prop .contenido_info ul {
+        padding-left: 5%;
+    }
+
+    /*DETALLE*/
+    #main_detalle .container_detalle #container_info_detalle #container_precio{
+        width: 100%;
+        align-items: center;
+        margin-top: 10%;
+        justify-content: space-between;
+    }
+
+    #main_detalle .container_detalle #container_info_detalle{
+        padding: 6%;
+    }
+
+    #main_detalle h1{
+        font-size: 23px;
+        padding: 0;
+    }
+
+    #main_detalle .container_detalle #container_info_detalle #precio_detalle {
+        font-size: 18px;
+    }
+
+    #main_detalle #tipo_oper_detalle {
+        font-size: 15px;
+        padding: 0.5% 5%;
+    }
+
+    #main_detalle .info_ppal_detalle {
+        margin-top: 20%;
+    }
+
+    .info_ppal_detalle .col-sm-4 {
+        margin-bottom: 10%;
     }
 
     /*footer*/
     footer {
         height: auto;
+        
     }
 
     footer #container_footer {
@@ -1406,6 +1445,37 @@ iframe {
 
     #icono_wpp {
         right: -58%;
+    }
+
+    #container_logo_footer{
+        width: 80%;
+    }
+
+    footer #container_footer #container_logo_footer {
+        width: 60%;
+    }
+
+    footer #container_footer #container_links_footer h5,
+    footer #container_footer #container_links_footer #container_lista_links,
+    footer #container_footer #container_contacto_footer h5,
+    footer #container_footer #container_redes_footer h5{
+        text-align: center;
+    }
+
+    footer #container_footer #container_contacto_footer ul li img {
+        width: 12%;
+    }
+
+    footer #container_contacto_footer .container_btn_footer span{
+        font-size: 10px;
+    }
+
+    footer .icono_redes{
+        width: 60%;
+    }
+
+    footer #disclaimer_footer span{
+        text-align: center;
     }
 }
 
@@ -1687,38 +1757,6 @@ iframe {
 
     #btn_ver_mas{
         margin: 3% 0 0 38%;
-    }
-
-    /*FOOTER*/
-    #container_logo_footer{
-        width: 80%;
-    }
-
-    footer #container_footer #container_logo_footer {
-        width: 60%;
-    }
-
-    footer #container_footer #container_links_footer h5,
-    footer #container_footer #container_links_footer #container_lista_links,
-    footer #container_footer #container_contacto_footer h5,
-    footer #container_footer #container_redes_footer h5{
-        text-align: center;
-    }
-
-    footer #container_footer #container_contacto_footer ul li img {
-        width: 12%;
-    }
-
-    footer #container_contacto_footer .container_btn_footer span{
-        font-size: 10px;
-    }
-
-    footer .icono_redes{
-        width: 60%;
-    }
-
-    footer #disclaimer_footer span{
-        text-align: center;
     }
 }
 
